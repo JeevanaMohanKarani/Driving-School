@@ -1,31 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Om Sai Ram Motor Driving School</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="/style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-100 text-gray-900">
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-3">
-    <div class="container d-flex justify-content-between align-items-center">
-      <a class="navbar-brand fs-4" href="/">Om Sai Ram Motor Driving School</a>
-      <div class="d-flex gap-3">
-        <a class="nav-link text-white" href="/about">About</a>
-        <a class="nav-link text-white" href="/courses">Courses</a>
-        <a class="nav-link text-white" href="/contact">Contact</a>
+  <!-- Navbar -->
+  <nav class="bg-gray-900 text-white shadow">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="text-xl font-semibold">
+        Om Sai Ram Motor Driving School
       </div>
+      <ul class="flex space-x-6 text-sm font-medium">
+        <li><a href="/" class="hover:text-yellow-300">Home</a></li>
+        <li><a href="/about" class="hover:text-yellow-300">About</a></li>
+        <li><a href="/courses" class="hover:text-yellow-300">Courses</a></li>
+        <li><a href="/contact" class="hover:text-yellow-300">Contact</a></li>
+      </ul>
     </div>
   </nav>
 
-  <main class="container py-5">
-    <%- body %> <!-- dynamic page content goes here -->
+  <!-- Main Content -->
+  <main class="max-w-5xl mx-auto px-4 py-8">
+    <%- body %>
   </main>
 
-  <footer class="bg-dark text-white text-center p-3 mt-5">
-    &copy; 2025 Om Sai Ram Motor Driving School. All rights reserved.
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white text-center py-4 mt-12">
+    © 2025 Om Sai Ram Motor Driving School. All rights reserved.
   </footer>
 
 </body>
 </html>
+
 
