@@ -1,0 +1,40 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f8f9fa;
+  color: #212529;
+}
+
+h1, h2 {
+  color: #0d6efd;
+  margin-bottom: 20px;
+}
+
+footer {
+  margin-top: 50px;
+}
+
+main {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.nav-link {
+  margin-right: 30px;
+}
+/* Classy hover effect for navbar links */
+.navbar .nav-link {
+  transition: all 0.3s ease;
+}
+
+.navbar .nav-link:hover {
+  background-color: #f0f0f0;  /* soft gray */
+  color: #333 !important;     /* dark elegant text */
+  border-radius: 6px;
+  padding: 6px 12px;
+  transform: scale(1.03);
+}
+
+
+
