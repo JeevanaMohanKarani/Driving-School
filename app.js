@@ -18,6 +18,10 @@ app.get('/', (req, res) => res.render('index'));
 app.get('/about', (req, res) => res.render('about'));
 app.get('/courses', (req, res) => res.render('courses'));
 app.get('/contact', (req, res) => res.render('contact'));
+app.use(express.static('public'));
+app.get('/gallery', (req, res) => {
+  res.render('gallery');
+});
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
