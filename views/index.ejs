@@ -30,7 +30,48 @@
 <section id="contact" class="py-20 bg-gray-100 text-center">
   <h2 class="text-2xl font-bold text-blue-600 mb-4">Contact</h2>
   <p><strong>Instructor:</strong> Jaya Kumar</p>
-  <p><strong>Phone:</strong> 9666061305 </p>
-  <p><strong>School Name:</strong> Om Sai Ram Motor Driving School </p>
-  <p><strong>Email:</strong><a href="mailto:Omsairamvehicleinsurance@gmail.com" class="text-blue-600 hover:underline">Omsairamvehicleinsurance@gmail.com</a></p>
+  <p><strong>Phone:</strong> 9666061305</p>
+  <p><strong>School Name:</strong> Om Sai Ram Motor Driving School</p>
+  <p><strong>Email:</strong> <a href="mailto:Omsairamvehicleinsurance@gmail.com" class="text-blue-600 hover:underline">Omsairamvehicleinsurance@gmail.com</a></p>
 </section>
+
+<!-- ===== Reviews Section ===== -->
+<section id="reviews" class="py-20 bg-white text-center">
+  <h2 class="text-2xl font-bold mb-6 text-blue-600">Student Reviews</h2>
+
+  <!-- Review Form -->
+  <form action="/submit-review" method="POST" class="max-w-xl mx-auto mb-10 text-left">
+    <label for="name" class="block mb-2 font-semibold">Your Name:</label>
+    <input type="text" id="name" name="name" class="w-full px-4 py-2 mb-4 border rounded" required>
+
+    <label for="rating" class="block mb-2 font-semibold">Rating:</label>
+    <select id="rating" name="rating" class="w-full px-4 py-2 mb-4 border rounded">
+      <option value="5">★★★★★</option>
+      <option value="4">★★★★☆</option>
+      <option value="3">★★★☆☆</option>
+      <option value="2">★★☆☆☆</option>
+      <option value="1">★☆☆☆☆</option>
+    </select>
+
+    <label for="review" class="block mb-2 font-semibold">Comment:</label>
+    <textarea id="review" name="comment" rows="4" class="w-full px-4 py-2 mb-4 border rounded" required></textarea>
+
+    <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Submit Review</button>
+  </form>
+
+  <!-- Reviews List -->
+  <div class="max-w-xl mx-auto text-left space-y-6">
+    <% if (reviews.length === 0) { %>
+      <p class="text-gray-600">No reviews yet. Be the first to comment!</p>
+    <% } else { %>
+      <% reviews.slice().reverse().forEach(r => { %>
+        <div class="bg-gray-100 p-4 rounded shadow">
+          <p class="font-semibold text-blue-700"><%= r.name %></p>
+          <p class="text-gray-700 italic">“<%= r.comment %>”</p>
+          <p class="text-yellow-500">Rating: <%= '⭐'.repeat(r.rating) %></p>
+        </div>
+      <% }) %>
+    <% } %>
+  </div>
+</section>
+
