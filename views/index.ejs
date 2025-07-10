@@ -50,6 +50,14 @@
     -ms-overflow-style: none;  /* IE/Edge */
     scrollbar-width: none;     /* Firefox */
   }
+
+  @keyframes slide-in {
+    from { opacity: 0; transform: translateX(100%); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  .animate-slide-in {
+    animation: slide-in 0.5s ease forwards;
+  }
   </style>
 </head>
 
@@ -175,6 +183,12 @@
     </form>
   </div>
 </section>
+<% if (req.query.sent === '1') { %>
+  <div id="successToast" class="fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded shadow-lg z-50" style="opacity: 1;">
+    ✅ Message sent successfully!
+  </div>
+<% } %>
+
 
 <!-- Reviews Section -->
 <section id="reviews" class="py-20 px-6 text-white" data-aos="fade-up">
@@ -215,9 +229,67 @@
   <footer class="py-6 text-center text-gray-400">
     © 2025 Om Sai Ram Driving School. All rights reserved.
   </footer>
+<!-- Exit Intent Modal -->
+<div id="exitModal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center hidden z-50">
+  <div class="bg-white rounded-lg p-6 text-center max-w-sm w-full shadow-xl">
+    <h2 class="text-xl font-semibold text-gray-800 mb-4">Wait! Don’t leave yet</h2>
+    <p class="text-gray-700 mb-6">Would you like to leave us a message before you go? We’d love to reach you later.</p>
+    <div class="flex justify-center gap-4">
+      <button id="stayBtn" class="bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600">Stay</button>
+      <button id="leaveBtn" class="bg-gray-300 text-black px-4 py-2 rounded hover:bg-gray-400">Leave Anyway</button>
+    </div>
+  </div>
+</div>
+// msg sent/failed successfully
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toast = document.getElementById('successToast');
+    if (toast) {
+      setTimeout(() => {
+        toast.style.transition = 'opacity 0.5s ease';
+        toast.style.opacity = '0';
+        setTimeout(() => {
+          toast.style.display = 'none';
+        }, 500); // wait until fade-out is done
+      }, 3000); // start fade after 3 seconds
+    }
+  });
+</script>
+// msg pop when leaving the site without submitting contact msg
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    let isMessageSent = false;
 
-  <script>
-    AOS.init({ duration: 1000, once: true });
-  </script>
+    // Watch for form submission to mark the message as sent
+    const contactForm = document.querySelector('form[action="/contact"]');
+    if (contactForm) {
+      contactForm.addEventListener('submit', () => {
+        isMessageSent = true;
+      });
+    }
+
+    // Show warning if user tries to leave without submitting the message
+    window.addEventListener('beforeunload', function (e) {
+      const name = document.querySelector('input[name="name"]').value.trim();
+      const email = document.querySelector('input[name="email"]').value.trim();
+      const message = document.querySelector('textarea[name="message"]').value.trim();
+
+      const hasTypedMessage = name || email || message;
+
+      if (!isMessageSent && hasTypedMessage) {
+        const confirmationMessage = "You haven’t submitted your message yet. Are you sure you want to leave?";
+        (e || window.event).returnValue = confirmationMessage; // For legacy browsers
+        return confirmationMessage; // For modern browsers
+      }
+    });
+  });
+</script>
+
+
+
+<script>
+
+  AOS.init({ duration: 1000, once: true });
+</script>
 </body>
 </html>

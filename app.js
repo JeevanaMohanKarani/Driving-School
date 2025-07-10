@@ -1,7 +1,7 @@
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const bodyParser = require('body-parser');
-const nodemailer = require('nodemailer'); // ✅ Nodemailer included
+const nodemailer = require('nodemailer');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -23,7 +23,7 @@ let reviews = [
 
 // ===== Routes =====
 app.get('/', (req, res) => {
-  res.render('index', { reviews });
+  res.render('index', { reviews, req });  // ✅ Pass req to EJS
 });
 
 // ===== Anchor Redirects =====
@@ -54,21 +54,23 @@ app.post('/contact', async (req, res) => {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: 'Omsairamvehicleinsurance@gmail.com',        // 🔁 Replace with your Gmail
-        pass: 'vwmi tgmd rtji uamm'            // 🔁 App password from Google
+        user: 'Omsairamvehicleinsurance@gmail.com',
+        pass: 'vwmi tgmd rtji uamm'  // 🔐 Use environment variable in production
       }
     });
 
     const mailOptions = {
       from: `"${name}" <${email}>`,
-      to: 'Omsairamvehicleinsurance@gmail.com',            // 🔁 Replace with your Gmail again
+      to: 'Omsairamvehicleinsurance@gmail.com',
       subject: '📩 New Contact Message - ABC Driving School',
       text: `You received a new message from your site:\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
     };
 
     await transporter.sendMail(mailOptions);
     console.log("✅ Contact message sent to your inbox.");
-    res.redirect('/#contact');
+
+    // ✅ Redirect with success query flag
+    res.redirect('/?sent=1#contact');
 
   } catch (err) {
     console.error("❌ Failed to send contact message:", err);
