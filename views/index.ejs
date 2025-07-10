@@ -48,9 +48,33 @@
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
-    @media (max-width: 767px) {
-    #desktop-menu {
-      display: none !important;
+ @media (max-width: 768px) {
+    body {
+      overflow-x: hidden; /* Prevents horizontal scrolling */
+    }
+
+    .gallery-scroll-wrapper {
+      width: 100% !important;
+      max-width: 100% !important;
+      overflow-x: auto;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    section,
+    .glass,
+    .p-10,
+    .p-6 {
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
+    }
+
+    .hero-image {
+      width: 100% !important;
+      max-width: 100% !important;
     }
   }
   </style>
@@ -131,7 +155,7 @@
         </div>
       </div>
       <div class="flex-1 text-center">
-        <img src="/images/car6.jpg" alt="Hero Image" class="rounded-lg shadow-lg w-full max-w-md mx-auto"/>
+        <img src="/images/car6.jpg" alt="Hero Image" class="hero-image rounded-lg shadow-lg mx-auto"/>
       </div>
     </div>
   </section>
@@ -189,7 +213,7 @@
   <h3 class="text-3xl font-bold mb-10 text-white">Gallery</h3>
 
   <!-- Scrollable wrapper with hidden scrollbar -->
-<div class="relative w-full overflow-x-auto scroll-smooth no-scrollbar">
+<div class="gallery-scroll-wrapper relative mx-auto overflow-x-auto scroll-smooth no-scrollbar">
     <div class="flex gap-6">
       <img src="/images/car1.jpg" alt="Car 1" class="rounded-lg shadow-lg w-full max-w-md mx-auto"  />
       <img src="/images/car2.jpg" alt="Car 2" class="rounded-lg shadow-lg w-full max-w-md mx-auto"  />
