@@ -62,18 +62,39 @@
 </head>
 
 <body>
-
-  <!-- Navbar -->
-  <nav class="fixed top-0 left-0 w-full z-50 bg-black bg-opacity-40 backdrop-blur-md p-4 flex justify-between items-center">
+<!-- Navbar -->
+<nav class="fixed top-0 left-0 w-full z-50 bg-black bg-opacity-40 backdrop-blur-md p-4">
+  <div class="max-w-7xl mx-auto flex items-center justify-between">
+    <!-- Logo -->
     <h1 class="text-xl font-bold text-white">Om Sai Ram Driving School</h1>
-    <ul class="flex space-x-6 text-white">
+
+    <!-- Hamburger Icon (Mobile) -->
+    <button id="menu-btn" class="md:hidden text-white focus:outline-none">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+
+    <!-- Navbar Links -->
+    <ul id="menu" class="hidden md:flex space-x-6 text-white">
       <li><a href="#home" class="hover:text-pink-400">Home</a></li>
       <li><a href="#courses" class="hover:text-pink-400">Courses</a></li>
       <li><a href="#gallery" class="hover:text-pink-400">Gallery</a></li>
       <li><a href="#contact" class="hover:text-pink-400">Contact</a></li>
-      <li><a href="#reviews" class="hover:text-pink-400">reviews</a></li>
+      <li><a href="/reviews" class="hover:text-pink-400">Reviews</a></li>
     </ul>
-  </nav>
+  </div>
+
+  <!-- Mobile Menu Links -->
+  <ul id="mobile-menu" class="md:hidden hidden flex-col mt-4 space-y-2 text-white text-center">
+    <li><a href="#home" class="block hover:text-pink-400">Home</a></li>
+    <li><a href="#courses" class="block hover:text-pink-400">Courses</a></li>
+    <li><a href="#gallery" class="block hover:text-pink-400">Gallery</a></li>
+    <li><a href="#contact" class="block hover:text-pink-400">Contact</a></li>
+    <li><a href="/reviews" class="block hover:text-pink-400">Reviews</a></li>
+  </ul>
+</nav>
 
   <!-- Hero Section -->
   <section id="home" class="min-h-screen flex items-center justify-center pt-32 px-6">
@@ -224,6 +245,7 @@
       <% }) %>
     <% } %>
   </div>
+
 </section>
   <!-- Footer -->
   <footer class="py-6 text-center text-gray-400">
@@ -240,7 +262,7 @@
     </div>
   </div>
 </div>
-// msg sent/failed successfully
+<!--msg sent/failed successfully-->
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const toast = document.getElementById('successToast');
@@ -255,7 +277,7 @@
     }
   });
 </script>
-// msg pop when leaving the site without submitting contact msg
+<!--msg pop when leaving the site without submitting contact message-->
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     let isMessageSent = false;
@@ -284,12 +306,19 @@
     });
   });
 </script>
-
-
-
 <script>
-
   AOS.init({ duration: 1000, once: true });
 </script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  });
+</script>
+
 </body>
 </html>

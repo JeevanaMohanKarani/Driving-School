@@ -2,44 +2,68 @@ const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
+const fs = require('fs');
+const path = require('path');
 
 const app = express();
 const port = process.env.PORT || 3000;
 
+// ===== File Path for Reviews =====
+const reviewsPath = path.join(__dirname, 'data', 'reviews.json');
+
 // ===== Middleware =====
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(expressLayouts);
 
 // ===== View Engine =====
 app.set('view engine', 'ejs');
-app.use(expressLayouts);
 app.set('layout', 'layout');
 
-// ===== In-Memory Review Store =====
-let reviews = [
-  { name: 'Ravi', rating: 5, comment: 'Great experience, I learned to drive confidently.' },
-  { name: 'Meena', rating: 4, comment: 'Professional instructor and practical training.' }
-];
+// ===== Helper: Load Reviews from File =====
+function loadReviews() {
+  try {
+    const data = fs.readFileSync(reviewsPath, 'utf-8');
+    return JSON.parse(data);
+  } catch {
+    return [];
+  }
+}
 
-// ===== Routes =====
+// ===== Helper: Save a Review to File =====
+function saveReview(newReview) {
+  const allReviews = loadReviews();
+  allReviews.push(newReview);
+  fs.writeFileSync(reviewsPath, JSON.stringify(allReviews, null, 2));
+}
+
+// ===== GET: Home Page (latest 2 reviews only) =====
 app.get('/', (req, res) => {
-  res.render('index', { reviews, req });  // ✅ Pass req to EJS
+  const reviews = loadReviews();
+  const latestReviews = reviews.slice(-2).reverse(); // get latest 2
+  res.render('index', { reviews: latestReviews, req });
+});
+
+// ===== GET: Separate Reviews Page =====
+app.get('/reviews', (req, res) => {
+  const reviews = loadReviews();
+  res.render('reviews', { reviews });
 });
 
 // ===== Anchor Redirects =====
 app.get('/about',   (req, res) => res.redirect('/#about'));
 app.get('/courses', (req, res) => res.redirect('/#courses'));
-app.get('/contact', (req, res) => res.redirect('/#contact'));
 app.get('/gallery', (req, res) => res.redirect('/#gallery'));
-app.get('/reviews', (req, res) => res.redirect('/#reviews'));
+app.get('/contact', (req, res) => res.redirect('/#contact'));
 
 // ===== POST: Submit Review =====
 app.post('/submit-review', (req, res) => {
   const { name, rating, comment } = req.body;
   if (name && rating && comment) {
-    reviews.push({ name, rating: Number(rating), comment });
+    const newReview = { name, rating: Number(rating), comment };
+    saveReview(newReview);
   }
-  res.redirect('/#reviews');
+  res.redirect('/reviews');
 });
 
 // ===== POST: Contact Form Email Sender =====
@@ -55,7 +79,7 @@ app.post('/contact', async (req, res) => {
       service: 'gmail',
       auth: {
         user: 'Omsairamvehicleinsurance@gmail.com',
-        pass: 'vwmi tgmd rtji uamm'  // 🔐 Use environment variable in production
+        pass: 'vwmi tgmd rtji uamm' // 🔐 App password (safe in dev, use env in prod)
       }
     });
 
@@ -67,9 +91,7 @@ app.post('/contact', async (req, res) => {
     };
 
     await transporter.sendMail(mailOptions);
-    console.log("✅ Contact message sent to your inbox.");
-
-    // ✅ Redirect with success query flag
+    console.log("✅ Contact message sent.");
     res.redirect('/?sent=1#contact');
 
   } catch (err) {
