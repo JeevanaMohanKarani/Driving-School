@@ -2,15 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Om Sai Ram Driving School</title>
 
   <!-- Fonts & Tailwind -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- AOS Animation -->
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css"/>
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
   <style>
@@ -19,7 +17,6 @@
       scroll-behavior: smooth;
       background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
       color: white;
-      overflow-x: hidden;
     }
     .glass {
       backdrop-filter: blur(20px);
@@ -53,16 +50,21 @@
 </head>
 <body>
   <!-- Navbar -->
-  <nav class="fixed top-0 left-0 w-full z-50 bg-black bg-opacity-40 backdrop-blur-md p-4">
-    <div class="max-w-7xl mx-auto flex items-center justify-between px-4">
-      <h1 class="text-base md:text-xl font-bold text-white">Om Sai Ram Driving School</h1>
-      <button id="menu-btn" class="md:hidden text-white focus:outline-none">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" stroke="currentColor" fill="none">
+  <nav class="fixed top-0 left-0 w-full z-50 bg-black bg-opacity-50 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+      <!-- Logo -->
+      <h1 class="text-lg font-bold text-white">Om Sai Ram Driving School</h1>
+
+      <!-- Hamburger -->
+      <button id="menu-btn" class="md:hidden focus:outline-none">
+        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path id="icon-bars" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           <path id="icon-x" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
         </svg>
       </button>
-      <ul id="desktop-menu" class="hidden md:flex space-x-6 text-white">
+
+      <!-- Desktop Nav -->
+      <ul class="hidden md:flex space-x-6 text-white">
         <li><a href="#home" class="hover:text-pink-400">Home</a></li>
         <li><a href="#courses" class="hover:text-pink-400">Courses</a></li>
         <li><a href="#gallery" class="hover:text-pink-400">Gallery</a></li>
@@ -70,7 +72,9 @@
         <li><a href="/reviews" class="hover:text-pink-400">Reviews</a></li>
       </ul>
     </div>
-    <ul id="mobile-menu" class="md:hidden hidden flex-col mt-4 space-y-2 text-white text-center">
+
+    <!-- Mobile Menu -->
+    <ul id="mobile-menu" class="md:hidden hidden flex-col space-y-4 px-4 pb-4 text-white text-center bg-black bg-opacity-90">
       <li><a href="#home" class="block hover:text-pink-400">Home</a></li>
       <li><a href="#courses" class="block hover:text-pink-400">Courses</a></li>
       <li><a href="#gallery" class="block hover:text-pink-400">Gallery</a></li>
@@ -79,6 +83,7 @@
     </ul>
   </nav>
 
+  <!-- Hamburger Script -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const menuBtn = document.getElementById('menu-btn');
