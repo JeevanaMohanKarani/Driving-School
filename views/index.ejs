@@ -48,22 +48,51 @@
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
- @media (max-width: 768px) {
+  @media (max-width: 768px) {
     body {
-      overflow-x: hidden; /* Prevents horizontal scrolling */
+      overflow-x: hidden;
     }
 
+    /* Navbar adjustments */
+    nav {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    nav h1 {
+      font-size: 1rem;
+      text-align: left;
+    }
+
+    #menu-btn {
+      margin-left: auto;
+    }
+
+    #mobile-menu {
+      width: 100%;
+      padding: 1rem 0;
+      background-color: rgba(0, 0, 0, 0.95);
+    }
+
+    #mobile-menu li a {
+      display: block;
+      padding: 0.75rem 1rem;
+    }
+
+    /* Fix gallery scroll */
     .gallery-scroll-wrapper {
       width: 100% !important;
       max-width: 100% !important;
       overflow-x: auto;
     }
 
+    /* Make images responsive */
     img {
       max-width: 100%;
       height: auto;
     }
 
+    /* Section paddings */
     section,
     .glass,
     .p-10,
@@ -72,12 +101,14 @@
       padding-right: 1rem !important;
     }
 
+    /* Hero image */
     .hero-image {
       width: 100% !important;
       max-width: 100% !important;
     }
   }
-  </style>
+</style>
+
 </head>
 <body>
   <div class="px-4 md:px-10">
@@ -155,7 +186,8 @@
         </div>
       </div>
       <div class="flex-1 text-center">
-        <img src="/images/car6.jpg" alt="Hero Image" class="rounded-lg shadow-lg w-full max-w-md mx-auto"/>
+        <img src="/images/car6.jpg" alt="Hero Image" class="hero-image rounded-lg shadow-lg mx-auto"/>
+/>
       </div>
     </div>
   </section>
@@ -213,7 +245,7 @@
   <h3 class="text-3xl font-bold mb-10 text-white">Gallery</h3>
 
   <!-- Scrollable wrapper with hidden scrollbar -->
-<div class="relative w-full overflow-x-auto scroll-smooth no-scrollbar">
+<div class="gallery-scroll-wrapper relative mx-auto overflow-x-auto scroll-smooth no-scrollbar">
     <div class="flex gap-6">
       <img src="/images/car1.jpg" alt="Car 1" class="rounded-lg shadow-lg w-full max-w-md mx-auto"  />
       <img src="/images/car2.jpg" alt="Car 2" class="rounded-lg shadow-lg w-full max-w-md mx-auto"  />
