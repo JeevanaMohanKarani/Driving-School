@@ -70,13 +70,13 @@
 
     <!-- Hamburger Icon (Mobile) -->
     <button id="menu-btn" class="md:hidden text-white focus:outline-none">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
               d="M4 6h16M4 12h16M4 18h16"/>
       </svg>
     </button>
 
-    <!-- Navbar Links -->
+    <!-- Navbar Links (Desktop Only) -->
     <ul id="menu" class="hidden md:flex space-x-6 text-white">
       <li><a href="#home" class="hover:text-pink-400">Home</a></li>
       <li><a href="#courses" class="hover:text-pink-400">Courses</a></li>
@@ -86,7 +86,7 @@
     </ul>
   </div>
 
-  <!-- Mobile Menu Links -->
+  <!-- Mobile Menu Links (Mobile Only) -->
   <ul id="mobile-menu" class="md:hidden hidden flex-col mt-4 space-y-2 text-white text-center">
     <li><a href="#home" class="block hover:text-pink-400">Home</a></li>
     <li><a href="#courses" class="block hover:text-pink-400">Courses</a></li>
@@ -95,6 +95,16 @@
     <li><a href="/reviews" class="block hover:text-pink-400">Reviews</a></li>
   </ul>
 </nav>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  });
+</script>
 
   <!-- Hero Section -->
   <section id="home" class="min-h-screen flex items-center justify-center pt-32 px-6">
@@ -277,7 +287,9 @@
     }
   });
 </script>
+
 <!--msg pop when leaving the site without submitting contact message-->
+
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     let isMessageSent = false;
@@ -309,16 +321,5 @@
 <script>
   AOS.init({ duration: 1000, once: true });
 </script>
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const menuBtn = document.getElementById('menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    menuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-    });
-  });
-</script>
-
 </body>
 </html>
