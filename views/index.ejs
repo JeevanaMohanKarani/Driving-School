@@ -14,11 +14,14 @@
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
     body {
       font-family: 'Poppins', sans-serif;
-      scroll-behavior: smooth;
       background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
       color: white;
+      padding-top: 72px; /* Prevent content hiding under navbar */
     }
     .glass {
       backdrop-filter: blur(20px);
@@ -55,22 +58,21 @@
 <!-- Navbar -->
 <nav class="fixed top-0 left-0 w-full z-50 bg-black bg-opacity-40 backdrop-blur-md p-4">
   <div class="max-w-7xl mx-auto flex items-center justify-between">
-    
-    <!-- School Name (Won't wrap now) -->
+    <!-- Brand Name -->
     <h1 class="text-lg md:text-xl font-bold text-white whitespace-nowrap">
       Om Sai Ram Driving School
     </h1>
 
-    <!-- Hamburger Icon (Mobile Only) -->
+    <!-- Hamburger Icon -->
     <button id="menu-btn" class="md:hidden text-white focus:outline-none">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" id="menu-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path id="menu-bars" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-        <path id="menu-x" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" stroke="currentColor" fill="none">
+        <path id="icon-bars" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        <path id="icon-x" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
       </svg>
     </button>
 
-    <!-- Navbar Links (Desktop Only) -->
-    <ul id="desktop-menu" class="hidden md:flex space-x-6 text-white">
+    <!-- Desktop Menu -->
+    <ul class="hidden md:flex space-x-6 text-white">
       <li><a href="#home" class="hover:text-pink-400">Home</a></li>
       <li><a href="#courses" class="hover:text-pink-400">Courses</a></li>
       <li><a href="#gallery" class="hover:text-pink-400">Gallery</a></li>
@@ -79,8 +81,8 @@
     </ul>
   </div>
 
-  <!-- Mobile Menu (Hidden by default) -->
-  <ul id="mobile-menu" class="md:hidden hidden flex-col mt-4 space-y-2 text-white text-center">
+  <!-- Mobile Menu -->
+  <ul id="mobile-menu" class="md:hidden hidden flex-col mt-6 space-y-4 text-white text-center">
     <li><a href="#home" class="block hover:text-pink-400">Home</a></li>
     <li><a href="#courses" class="block hover:text-pink-400">Courses</a></li>
     <li><a href="#gallery" class="block hover:text-pink-400">Gallery</a></li>
@@ -89,32 +91,30 @@
   </ul>
 </nav>
 
-<!-- Script to handle toggle -->
+<!-- Toggle Script -->
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const menuBtn = document.getElementById('menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
-    const menuBars = document.getElementById('menu-bars');
-    const menuX = document.getElementById('menu-x');
+    const iconBars = document.getElementById('icon-bars');
+    const iconX = document.getElementById('icon-x');
 
     menuBtn.addEventListener('click', () => {
       mobileMenu.classList.toggle('hidden');
-      menuBars.classList.toggle('hidden');
-      menuX.classList.toggle('hidden');
+      iconBars.classList.toggle('hidden');
+      iconX.classList.toggle('hidden');
     });
 
-    // Hide menu when a link is clicked (mobile only)
-    const mobileLinks = mobileMenu.querySelectorAll('a');
-    mobileLinks.forEach(link => {
+    // Hide menu when a link is clicked
+    mobileMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         mobileMenu.classList.add('hidden');
-        menuBars.classList.remove('hidden');
-        menuX.classList.add('hidden');
+        iconBars.classList.remove('hidden');
+        iconX.classList.add('hidden');
       });
     });
   });
 </script>
-
   <!-- Hero Section -->
   <section id="home" class="min-h-screen flex items-center justify-center pt-32 px-6">
     <div class="max-w-6xl w-full flex flex-col md:flex-row items-center justify-between gap-10 glass p-10">
