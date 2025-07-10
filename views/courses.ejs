@@ -1,7 +1,70 @@
-<h2 class="text-2xl font-bold mb-4 text-blue-600">Courses</h2>
-<ul class="list-disc pl-6 space-y-2">
-  <li>Basic Driving Skills</li>
-  <li>Intermediate Traffic Rules</li>
-  <li>Advanced Highway Techniques</li>
-  <li>Reverse & Parking Mastery</li>
-</ul>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Courses - Om Sai Ram Driving School</title>
+
+  <!-- Fonts & Libraries -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css"/>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+  <!-- Internal Styling -->
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #1f1c2c, #928dab);
+      color: #ffffff !important;
+    }
+
+    h1, h2, p {
+      color: #ffffff !important;
+    }
+
+    .glass {
+      backdrop-filter: blur(20px);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+      border-radius: 16px;
+      padding: 2rem;
+      color: #ffffff !important;
+    }
+
+    .glass:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
+      transition: 0.3s ease;
+    }
+
+    .emoji {
+      font-size: 1.5rem;
+      margin-right: 0.3rem;
+    }
+  </style>
+</head>
+<body class="min-h-screen px-6 py-12 text-white">
+  <h1 class="text-4xl font-bold text-center mb-12" data-aos="fade-down">🚘 Our Driving Courses</h1>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-10" data-aos="fade-up">
+    <div class="glass hover:shadow-lg transition duration-300">
+      <h2 class="text-2xl font-semibold mb-3"><span class="emoji">🔰</span> Beginner's Package</h2>
+      <p>Learn basics like steering, clutch, brake usage, and road signs. Perfect for new learners.</p>
+    </div>
+
+    <div class="glass hover:shadow-lg transition duration-300">
+      <h2 class="text-2xl font-semibold mb-3"><span class="emoji">🚦</span> Intermediate Training</h2>
+      <p>Master city traffic, U-turns, reverse parking, and gear coordination with confidence.</p>
+    </div>
+
+    <div class="glass hover:shadow-lg transition duration-300">
+      <h2 class="text-2xl font-semibold mb-3"><span class="emoji">🌃</span> Advanced Driving</h2>
+      <p>Practice on highways, night driving, hill starts, and complex traffic scenarios like a pro.</p>
+    </div>
+  </div>
+
+  <script>AOS.init({ duration: 1000 });</script>
+</body>
+</html>

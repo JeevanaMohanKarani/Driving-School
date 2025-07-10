@@ -1,77 +1,194 @@
-<section id="home" class="py-20 bg-gray-100 text-center">
-  <h2 class="text-3xl font-bold text-blue-600">Welcome to Om Sai Ram Motor Driving School</h2>
-  <p class="mt-4">We provide safe, professional and expert-level driving lessons for everyone.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Om Sai Ram Driving School</title>
+
+  <!-- Fonts & Tailwind -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- AOS Animation -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css"/>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: white;
+    }
+    .glass {
+      backdrop-filter: blur(20px);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+      border-radius: 16px;
+    }
+    .neon-btn {
+      background: transparent;
+      border: 2px solid #e600ff;
+      color: #fff;
+      padding: 0.75rem 2rem;
+      border-radius: 9999px;
+      transition: all 0.3s ease;
+    }
+    .neon-btn:hover {
+      background: #e600ff;
+      color: #000;
+      transform: scale(1.05);
+      box-shadow: 0 0 10px #e600ff, 0 0 20px #e600ff;
+    }
+
+      /* Hide scrollbars but keep scroll functionality */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE/Edge */
+    scrollbar-width: none;     /* Firefox */
+  }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="fixed top-0 left-0 w-full z-50 bg-black bg-opacity-40 backdrop-blur-md p-4 flex justify-between items-center">
+    <h1 class="text-xl font-bold text-white">Om Sai Ram Driving School</h1>
+    <ul class="flex space-x-6 text-white">
+      <li><a href="#home" class="hover:text-pink-400">Home</a></li>
+      <li><a href="#courses" class="hover:text-pink-400">Courses</a></li>
+      <li><a href="#gallery" class="hover:text-pink-400">Gallery</a></li>
+      <li><a href="#contact" class="hover:text-pink-400">Contact</a></li>
+      <li><a href="#reviews" class="hover:text-pink-400">reviews</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="min-h-screen flex items-center justify-center pt-32 px-6">
+    <div class="max-w-6xl w-full flex flex-col md:flex-row items-center justify-between gap-10 glass p-10">
+      <div class="flex-1">
+        <h2 class="text-4xl font-bold mb-4"  style="color:#ffffff;">Learn Driving With Experts</h2>
+        <p class="text-gray-300 mb-6">We offer expert-led driving lessons with certified trainers. Gain confidence and hit the road safely!</p>
+        <div class="flex gap-4">
+          <a href="#contact" class="neon-btn">Join Now</a>
+          <a href="#courses" class="neon-btn">View Courses</a>
+        </div>
+      </div>
+      <div class="flex-1 text-center">
+        <img src="/images/car6.jpg" alt="Hero Image" class="rounded-lg shadow-lg w-full max-w-md mx-auto"/>
+      </div>
+    </div>
+  </section>
+
+  <!-- Courses -->
+  <section id="courses" class="py-20 px-10 text-center" data-aos="fade-up">
+    <h3 class="text-3xl font-bold mb-10"  style="color:#ffffff;">Our Courses</h3>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+      <div class="glass p-6">
+        <h4 class="text-xl font-semibold mb-2 text-white">Beginner Training</h4>
+        <p class="text-gray-300">Learn from scratch with our beginner-friendly instructors.</p>
+      </div>
+      <div class="glass p-6">
+        <h4 class="text-xl font-semibold mb-2 text-white">Advanced Course</h4>
+        <p class="text-gray-300">Refine your skills with advanced traffic and highway training.</p>
+      </div>
+      <div class="glass p-6">
+        <h4 class="text-xl font-semibold mb-2 text-white">License Preparation</h4>
+        <p class="text-gray-300">Full support and guidance to pass your license test easily.</p>
+      </div>
+    </div>
+  </section>
+
+<!-- Gallery -->
+<section id="gallery" class="py-20 px-6 text-center bg-black bg-opacity-20" data-aos="fade-up">
+  <h3 class="text-3xl font-bold mb-10 text-white">Gallery</h3>
+
+  <!-- Scrollable wrapper with hidden scrollbar -->
+  <div class="relative mx-auto w-[640px] overflow-x-auto scroll-smooth no-scrollbar">
+    <div class="flex gap-6">
+      <img src="/images/car1.jpg" alt="Car 1" class="w-[300px] h-auto rounded-lg shadow-lg" />
+      <img src="/images/car2.jpg" alt="Car 2" class="w-[300px] h-auto rounded-lg shadow-lg" />
+      <img src="/images/car3.jpg" alt="Car 3" class="w-[300px] h-auto rounded-lg shadow-lg" />
+      <img src="/images/car4.jpg" alt="Car 4" class="w-[300px] h-auto rounded-lg shadow-lg" />
+      <!-- Add more images here -->
+    </div>
+  </div>
+
+  <!-- Optional hint -->
+  <p class="text-sm text-gray-300 mt-4">Swipe right to view more →</p>
 </section>
 
-<section id="about" class="py-20 bg-white text-center">
-  <h2 class="text-2xl font-bold text-blue-600 mb-4">About Us</h2>
-  <p><strong>Om Sai Ram Motor Driving School</strong> is led by expert instructor <strong>Jaya Kumar</strong>.</p>
-  <p class="mt-2">We focus on safety, confidence, and real-road driving experience.</p>
-</section>
 
-<section id="courses" class="py-20 bg-gray-100 text-center">
-  <h2 class="text-2xl font-bold text-blue-600 mb-4">Courses</h2>
-  <ul class="list-disc list-inside text-left mx-auto max-w-md">
-    <li>Beginner Driving Course</li>
-    <li>Advanced Driving Course</li>
-    <li>Vehicle Insurance Assistance</li>
-  </ul>
-</section>
+  <!-- Contact Section -->
+<section id="contact" class="py-20 px-6 text-white" data-aos="fade-up">
+  <h2 class="text-4xl font-bold text-center mb-12">Contact Us</h2>
+  <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto glass p-8">
+    
+    <!-- Left: Contact Info -->
+    <div>
+      <h3 class="text-2xl font-semibold mb-4">Get In Touch</h3>
+      <p class="mb-2"><strong>Instructor:</strong> Jaya Kumar</p>
+      <p class="mb-2"><strong>Phone:</strong> 9666061305</p>
+      <p class="mb-2"><strong>Email:</strong> <a href="mailto:Omsairamvehicleinsurance@gmail.com" class="text-pink-400 underline">Omsairamvehicleinsurance@gmail.com</a></p>
+      <p class="mb-2"><strong>School:</strong> Om Sai Ram Motor Driving School</p>
+    </div>
 
-<section id="gallery" class="py-20 bg-white text-center">
-  <h2 class="text-2xl font-bold text-blue-600 mb-6">Gallery</h2>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 px-6">
-    <img src="/images/car1.jpg" alt="Car 1" class="rounded shadow">
-    <img src="/images/car2.jpg" alt="Car 2" class="rounded shadow">
-    <img src="/images/car3.jpg" alt="Car 3" class="rounded shadow">
+    <!-- Right: Contact Form -->
+    <form action="/contact" method="POST" class="space-y-4">
+      <input type="text" name="name" placeholder="Your Name" required class="w-full p-3 rounded bg-gray-900 text-white border border-gray-700"/>
+      <input type="email" name="email" placeholder="Your Email" required class="w-full p-3 rounded bg-gray-900 text-white border border-gray-700"/>
+      <textarea name="message" rows="5" placeholder="Your Message" required class="w-full p-3 rounded bg-gray-900 text-white border border-gray-700"></textarea>
+      <button type="submit" class="neon-btn w-full">Send Message</button>
+    </form>
   </div>
 </section>
 
-<section id="contact" class="py-20 bg-gray-100 text-center">
-  <h2 class="text-2xl font-bold text-blue-600 mb-4">Contact</h2>
-  <p><strong>Instructor:</strong> Jaya Kumar</p>
-  <p><strong>Phone:</strong> 9666061305</p>
-  <p><strong>School Name:</strong> Om Sai Ram Motor Driving School</p>
-  <p><strong>Email:</strong> <a href="mailto:Omsairamvehicleinsurance@gmail.com" class="text-blue-600 hover:underline">Omsairamvehicleinsurance@gmail.com</a></p>
-</section>
-
-<!-- ===== Reviews Section ===== -->
-<section id="reviews" class="py-20 bg-white text-center">
-  <h2 class="text-2xl font-bold mb-6 text-blue-600">Student Reviews</h2>
+<!-- Reviews Section -->
+<section id="reviews" class="py-20 px-6 text-white" data-aos="fade-up">
+  <h2 class="text-4xl font-bold text-center mb-12">Student Reviews</h2>
 
   <!-- Review Form -->
-  <form action="/submit-review" method="POST" class="max-w-xl mx-auto mb-10 text-left">
-    <label for="name" class="block mb-2 font-semibold">Your Name:</label>
-    <input type="text" id="name" name="name" class="w-full px-4 py-2 mb-4 border rounded" required>
-
-    <label for="rating" class="block mb-2 font-semibold">Rating:</label>
-    <select id="rating" name="rating" class="w-full px-4 py-2 mb-4 border rounded">
-      <option value="5">★★★★★</option>
-      <option value="4">★★★★☆</option>
-      <option value="3">★★★☆☆</option>
-      <option value="2">★★☆☆☆</option>
-      <option value="1">★☆☆☆☆</option>
+  <form action="/submit-review" method="POST" class="max-w-3xl mx-auto glass p-6 space-y-4">
+    <input type="text" name="name" placeholder="Your Name" required class="w-full p-3 rounded bg-gray-900 text-white border border-gray-700"/>
+    
+    <select name="rating" required class="w-full p-3 rounded bg-gray-900 text-white border border-gray-700">
+      <option value="5">⭐⭐⭐⭐⭐</option>
+      <option value="4">⭐⭐⭐⭐</option>
+      <option value="3">⭐⭐⭐</option>
+      <option value="2">⭐⭐</option>
+      <option value="1">⭐</option>
     </select>
-
-    <label for="review" class="block mb-2 font-semibold">Comment:</label>
-    <textarea id="review" name="comment" rows="4" class="w-full px-4 py-2 mb-4 border rounded" required></textarea>
-
-    <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Submit Review</button>
+    
+    <textarea name="comment" rows="4" placeholder="Your Comment" required class="w-full p-3 rounded bg-gray-900 text-white border border-gray-700"></textarea>
+    <button type="submit" class="neon-btn w-full">Submit Review</button>
   </form>
 
-  <!-- Reviews List -->
-  <div class="max-w-xl mx-auto text-left space-y-6">
+  <!-- Display Reviews -->
+  <div class="max-w-4xl mx-auto mt-10 space-y-6">
     <% if (reviews.length === 0) { %>
-      <p class="text-gray-600">No reviews yet. Be the first to comment!</p>
+      <p class="text-center text-gray-400">No reviews yet. Be the first to comment!</p>
     <% } else { %>
       <% reviews.slice().reverse().forEach(r => { %>
-        <div class="bg-gray-100 p-4 rounded shadow">
-          <p class="font-semibold text-blue-700"><%= r.name %></p>
-          <p class="text-gray-700 italic">“<%= r.comment %>”</p>
-          <p class="text-yellow-500">Rating: <%= '⭐'.repeat(r.rating) %></p>
+        <div class="glass p-4">
+          <p class="text-pink-300 font-semibold"><%= r.name %></p>
+          <p class="italic text-sm mb-1">"<%= r.comment %>"</p>
+          <p class="text-yellow-400">Rating: <%= '⭐'.repeat(r.rating) %></p>
         </div>
       <% }) %>
     <% } %>
   </div>
 </section>
+  <!-- Footer -->
+  <footer class="py-6 text-center text-gray-400">
+    © 2025 Om Sai Ram Driving School. All rights reserved.
+  </footer>
 
+  <script>
+    AOS.init({ duration: 1000, once: true });
+  </script>
+</body>
+</html>
