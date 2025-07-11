@@ -51,6 +51,43 @@
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
+
+    /* --- FIXES FOR MOBILE VIEW --- */
+    @media (max-width: 767px) {
+        /* Hides the desktop menu on small screens */
+        #desktop-menu {
+            display: none !important;
+        }
+
+        /* Forces main sections to take up the full width */
+        .full-width-mobile {
+            padding-left: 1.5rem !important;
+            padding-right: 1.5rem !important;
+        }
+
+        /* Makes Hero section content stack vertically */
+        .hero-container {
+            flex-direction: column !important;
+        }
+
+        .hero-container > div {
+            text-align: center !important;
+            width: 100% !important;
+        }
+
+        /* Makes gallery images take up most of the screen width */
+        .gallery-image {
+            width: 85vw !important;
+            flex-shrink: 0 !important;
+        }
+
+        /* Ensures the scrollable gallery occupies full width */
+        .gallery-scroll-container {
+            width: 100% !important;
+            padding-left: 1.5rem !important;
+            padding-right: 1.5rem !important;
+        }
+    }
   </style>
 </head>
 <body>
@@ -109,8 +146,8 @@
   });
 </script>
 
-<section id="home" class="min-h-screen flex items-center justify-center pt-24 px-6">
-  <div class="max-w-6xl w-full flex flex-col md:flex-row items-center justify-between gap-10 glass p-6 md:p-10">
+<section id="home" class="min-h-screen flex items-center justify-center pt-24 px-6 full-width-mobile">
+  <div class="max-w-6xl w-full flex flex-col md:flex-row items-center justify-between gap-10 glass p-6 md:p-10 hero-container">
     <div class="flex-1 text-center md:text-left" data-aos="fade-right">
       <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4" style="color:#ffffff;">Learn Driving With Experts</h2>
       <p class="text-gray-300 mb-6 text-base sm:text-lg">We offer expert-led driving lessons with certified trainers. Gain confidence and hit the road safely!</p>
@@ -125,7 +162,7 @@
   </div>
 </section>
 
-<section id="courses" class="py-20 px-6 text-center" data-aos="fade-up">
+<section id="courses" class="py-20 px-6 text-center full-width-mobile" data-aos="fade-up">
   <h3 class="text-3xl font-bold mb-10" style="color:#ffffff;">Our Services</h3>
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
     <div class="glass p-6">
@@ -171,15 +208,15 @@
   </div>
 </section>
 
-<section id="gallery" class="py-20 px-6 text-center bg-black bg-opacity-20" data-aos="fade-up">
+<section id="gallery" class="py-20 text-center bg-black bg-opacity-20 full-width-mobile" data-aos="fade-up">
   <h3 class="text-3xl font-bold mb-10 text-white">Gallery</h3>
 
-  <div class="relative mx-auto overflow-x-auto scroll-smooth no-scrollbar py-2">
+  <div class="relative mx-auto overflow-x-auto scroll-smooth no-scrollbar py-2 gallery-scroll-container">
     <div class="flex gap-6 pb-4">
-      <img src="/images/car1.jpg" alt="Car 1" class="w-[85vw] md:w-96 flex-shrink-0 rounded-lg shadow-lg object-cover" />
-      <img src="/images/car2.jpg" alt="Car 2" class="w-[85vw] md:w-96 flex-shrink-0 rounded-lg shadow-lg object-cover" />
-      <img src="/images/car3.jpg" alt="Car 3" class="w-[85vw] md:w-96 flex-shrink-0 rounded-lg shadow-lg object-cover" />
-      <img src="/images/car4.jpg" alt="Car 4" class="w-[85vw] md:w-96 flex-shrink-0 rounded-lg shadow-lg object-cover" />
+      <img src="/images/car1.jpg" alt="Car 1" class="w-[85vw] md:w-96 flex-shrink-0 rounded-lg shadow-lg object-cover gallery-image" />
+      <img src="/images/car2.jpg" alt="Car 2" class="w-[85vw] md:w-96 flex-shrink-0 rounded-lg shadow-lg object-cover gallery-image" />
+      <img src="/images/car3.jpg" alt="Car 3" class="w-[85vw] md:w-96 flex-shrink-0 rounded-lg shadow-lg object-cover gallery-image" />
+      <img src="/images/car4.jpg" alt="Car 4" class="w-[85vw] md:w-96 flex-shrink-0 rounded-lg shadow-lg object-cover gallery-image" />
     </div>
   </div>
 
@@ -187,7 +224,7 @@
 </section>
 
 
-<section id="contact" class="py-20 px-6 text-white" data-aos="fade-up">
+<section id="contact" class="py-20 px-6 text-white full-width-mobile" data-aos="fade-up">
   <h2 class="text-4xl font-bold text-center mb-12">Contact Us</h2>
   <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto glass p-8">
     
@@ -214,7 +251,7 @@
 <% } %>
 
 
-<section id="reviews" class="py-20 px-6 text-white" data-aos="fade-up">
+<section id="reviews" class="py-20 px-6 text-white full-width-mobile" data-aos="fade-up">
   <h2 class="text-4xl font-bold text-center mb-12">Student Reviews</h2>
 
   <form action="/submit-review" method="POST" class="max-w-3xl mx-auto glass p-6 space-y-4">
