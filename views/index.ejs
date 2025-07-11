@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Om Sai Ram Driving School</title>
 
-  <!-- Fonts & Tailwind -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css"/>
@@ -17,7 +16,7 @@
       scroll-behavior: smooth;
       background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
       color: white;
-      overflow-x: hidden; /* ✅ Prevents horizontal scrolling */
+      overflow-x: hidden;
     }
 
     .glass {
@@ -27,6 +26,7 @@
       box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
       border-radius: 16px;
     }
+
     .neon-btn {
       background: transparent;
       border: 2px solid #e600ff;
@@ -35,101 +35,39 @@
       border-radius: 9999px;
       transition: all 0.3s ease;
     }
+
     .neon-btn:hover {
       background: #e600ff;
       color: #000;
       transform: scale(1.05);
       box-shadow: 0 0 10px #e600ff, 0 0 20px #e600ff;
     }
+
     .no-scrollbar::-webkit-scrollbar {
       display: none;
     }
+
     .no-scrollbar {
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
-  @media (max-width: 768px) {
-    body {
-      overflow-x: hidden;
-    }
-
-    /* Navbar adjustments */
-    nav {
-      padding-left: 1rem;
-      padding-right: 1rem;
-    }
-
-    nav h1 {
-      font-size: 1rem;
-      text-align: left;
-    }
-
-    #menu-btn {
-      margin-left: auto;
-    }
-
-    #mobile-menu {
-      width: 100%;
-      padding: 1rem 0;
-      background-color: rgba(0, 0, 0, 0.95);
-    }
-
-    #mobile-menu li a {
-      display: block;
-      padding: 0.75rem 1rem;
-    }
-
-    /* Fix gallery scroll */
-    .gallery-scroll-wrapper {
-      width: 100% !important;
-      max-width: 100% !important;
-      overflow-x: auto;
-    }
-
-    /* Make images responsive */
-    img {
-      max-width: 100%;
-      height: auto;
-    }
-
-    /* Section paddings */
-    section,
-    .glass,
-    .p-10,
-    .p-6 {
-      padding-left: 1rem !important;
-      padding-right: 1rem !important;
-    }
-
-    /* Hero image */
-    .hero-image {
-      width: 100% !important;
-      max-width: 100% !important;
-    }
-  }
-</style>
-
+  </style>
 </head>
 <body>
-  <div class="px-4 md:px-10">
-<!-- Navbar -->
-<nav class="fixed top-0 left-0 w-full z-50 bg-black bg-opacity-50 backdrop-blur-md px-4 py-3">
-  <div class="max-w-7xl mx-auto flex items-center justify-between">
-    <!-- Logo -->
-    <h1 class="text-lg font-bold text-white whitespace-nowrap">Om Sai Ram Driving School</h1>
+<nav class="fixed top-0 left-0 w-full z-50 bg-black bg-opacity-50 backdrop-blur-md">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+    <h1 class="text-lg font-bold text-white">Om Sai Ram Driving School</h1>
 
-    <!-- Hamburger Icon -->
-    <button id="menu-btn" class="md:hidden focus:outline-none ml-auto">
-      <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path id="icon-bars" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+    <button id="menu-btn" class="md:hidden text-white focus:outline-none">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path id="icon-bars" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
               d="M4 6h16M4 12h16M4 18h16" />
-        <path id="icon-x" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+        <path id="icon-x" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
               d="M6 18L18 6M6 6l12 12" />
       </svg>
     </button>
 
-    <!-- Desktop Menu -->
-    <ul class="hidden md:flex space-x-6 text-white ml-10">
+    <ul class="hidden md:flex space-x-6 text-white" id="desktop-menu">
       <li><a href="#home" class="hover:text-pink-400">Home</a></li>
       <li><a href="#courses" class="hover:text-pink-400">Courses</a></li>
       <li><a href="#gallery" class="hover:text-pink-400">Gallery</a></li>
@@ -138,8 +76,7 @@
     </ul>
   </div>
 
-  <!-- Mobile Menu -->
-  <ul id="mobile-menu" class="md:hidden hidden flex-col mt-3 space-y-2 text-white text-center bg-black bg-opacity-90 py-3 rounded">
+  <ul id="mobile-menu" class="md:hidden hidden flex-col space-y-4 px-4 pb-4 text-white text-center bg-black bg-opacity-90">
     <li><a href="#home" class="block hover:text-pink-400">Home</a></li>
     <li><a href="#courses" class="block hover:text-pink-400">Courses</a></li>
     <li><a href="#gallery" class="block hover:text-pink-400">Gallery</a></li>
@@ -148,7 +85,6 @@
   </ul>
 </nav>
 
-<!-- Hamburger Script -->
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const menuBtn = document.getElementById('menu-btn');
@@ -162,6 +98,7 @@
       iconX.classList.toggle('hidden');
     });
 
+    // Close menu when link is clicked
     mobileMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         mobileMenu.classList.add('hidden');
@@ -172,28 +109,25 @@
   });
 </script>
 
-  <!-- Hero Section -->
-  <section id="home" class="min-h-screen flex items-center justify-center pt-32 px-6">
-    <div class="max-w-6xl w-full flex flex-col md:flex-row items-center justify-between gap-10 glass p-10">
-      <div class="flex-1">
-        <h2 class="text-4xl font-bold mb-4"  style="color:#ffffff;">Learn Driving With Experts</h2>
-        <p class="text-gray-300 mb-6">We offer expert-led driving lessons with certified trainers. Gain confidence and hit the road safely!</p>
-        <div class="flex gap-4">
-          <a href="#contact" class="neon-btn">Join Now</a>
-          <a href="#courses" class="neon-btn">View Courses</a>
-        </div>
-      </div>
-      <div class="flex-1 text-center">
-        <img src="/images/car6.jpg" alt="Hero Image" class="hero-image rounded-lg shadow-lg mx-auto"/>
-/>
+<section id="home" class="min-h-screen flex items-center justify-center pt-24 px-6">
+  <div class="max-w-6xl w-full flex flex-col md:flex-row items-center justify-between gap-10 glass p-6 md:p-10">
+    <div class="flex-1 text-center md:text-left" data-aos="fade-right">
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4" style="color:#ffffff;">Learn Driving With Experts</h2>
+      <p class="text-gray-300 mb-6 text-base sm:text-lg">We offer expert-led driving lessons with certified trainers. Gain confidence and hit the road safely!</p>
+      <div class="flex gap-4 justify-center md:justify-start">
+        <a href="#contact" class="neon-btn">Join Now</a>
+        <a href="#courses" class="neon-btn">View Courses</a>
       </div>
     </div>
-  </section>
+    <div class="flex-1 text-center" data-aos="fade-left">
+      <img src="/images/car6.jpg" alt="Hero Image" class="rounded-lg shadow-lg w-full max-w-sm mx-auto md:max-w-md"/>
+    </div>
+  </div>
+</section>
 
-  <!-- Courses -->
-<section id="courses" class="py-20 px-10 text-center" data-aos="fade-up">
-  <h3 class="text-3xl font-bold mb-10" style="color:#ffffff;">Our Courses</h3>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+<section id="courses" class="py-20 px-6 text-center" data-aos="fade-up">
+  <h3 class="text-3xl font-bold mb-10" style="color:#ffffff;">Our Services</h3>
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
     <div class="glass p-6">
       <h4 class="text-xl font-semibold mb-2 text-white">Driving Licence</h4>
       <p class="text-gray-300">Assistance with learner and permanent driving licences.</p>
@@ -237,33 +171,26 @@
   </div>
 </section>
 
-
-<!-- Gallery -->
 <section id="gallery" class="py-20 px-6 text-center bg-black bg-opacity-20" data-aos="fade-up">
   <h3 class="text-3xl font-bold mb-10 text-white">Gallery</h3>
 
-  <!-- Scrollable wrapper with hidden scrollbar -->
-<div class="gallery-scroll-wrapper relative mx-auto overflow-x-auto scroll-smooth no-scrollbar">
-    <div class="flex gap-6">
-      <img src="/images/car1.jpg" alt="Car 1" class="rounded-lg shadow-lg w-full max-w-md mx-auto"  />
-      <img src="/images/car2.jpg" alt="Car 2" class="rounded-lg shadow-lg w-full max-w-md mx-auto"  />
-      <img src="/images/car3.jpg" alt="Car 3" class="rounded-lg shadow-lg w-full max-w-md mx-auto"  />
-      <img src="/images/car4.jpg" alt="Car 4" class="rounded-lg shadow-lg w-full max-w-md mx-auto"  />
-      <!-- Add more images here -->
+  <div class="relative mx-auto overflow-x-auto scroll-smooth no-scrollbar py-2">
+    <div class="flex gap-6 pb-4">
+      <img src="/images/car1.jpg" alt="Car 1" class="w-[85vw] md:w-96 flex-shrink-0 rounded-lg shadow-lg object-cover" />
+      <img src="/images/car2.jpg" alt="Car 2" class="w-[85vw] md:w-96 flex-shrink-0 rounded-lg shadow-lg object-cover" />
+      <img src="/images/car3.jpg" alt="Car 3" class="w-[85vw] md:w-96 flex-shrink-0 rounded-lg shadow-lg object-cover" />
+      <img src="/images/car4.jpg" alt="Car 4" class="w-[85vw] md:w-96 flex-shrink-0 rounded-lg shadow-lg object-cover" />
     </div>
   </div>
 
-  <!-- Optional hint -->
   <p class="text-sm text-gray-300 mt-4">Swipe right to view more →</p>
 </section>
 
 
-  <!-- Contact Section -->
 <section id="contact" class="py-20 px-6 text-white" data-aos="fade-up">
   <h2 class="text-4xl font-bold text-center mb-12">Contact Us</h2>
   <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto glass p-8">
     
-    <!-- Left: Contact Info -->
     <div>
       <h3 class="text-2xl font-semibold mb-4">Get In Touch</h3>
       <p class="mb-2"><strong>Instructor:</strong> Jaya Kumar</p>
@@ -272,7 +199,6 @@
       <p class="mb-2"><strong>School:</strong> Om Sai Ram Motor Driving School</p>
     </div>
 
-    <!-- Right: Contact Form -->
     <form action="/contact" method="POST" class="space-y-4">
       <input type="text" name="name" placeholder="Your Name" required class="w-full p-3 rounded bg-gray-900 text-white border border-gray-700"/>
       <input type="email" name="email" placeholder="Your Email" required class="w-full p-3 rounded bg-gray-900 text-white border border-gray-700"/>
@@ -288,11 +214,9 @@
 <% } %>
 
 
-<!-- Reviews Section -->
 <section id="reviews" class="py-20 px-6 text-white" data-aos="fade-up">
   <h2 class="text-4xl font-bold text-center mb-12">Student Reviews</h2>
 
-  <!-- Review Form -->
   <form action="/submit-review" method="POST" class="max-w-3xl mx-auto glass p-6 space-y-4">
     <input type="text" name="name" placeholder="Your Name" required class="w-full p-3 rounded bg-gray-900 text-white border border-gray-700"/>
     
@@ -308,7 +232,6 @@
     <button type="submit" class="neon-btn w-full">Submit Review</button>
   </form>
 
-  <!-- Display Reviews -->
   <div class="max-w-4xl mx-auto mt-10 space-y-6">
     <% if (reviews.length === 0) { %>
       <p class="text-center text-gray-400">No reviews yet. Be the first to comment!</p>
@@ -324,11 +247,9 @@
   </div>
 
 </section>
-  <!-- Footer -->
   <footer class="py-6 text-center text-gray-400">
     © 2025 Om Sai Ram Driving School. All rights reserved.
   </footer>
-<!-- Exit Intent Modal -->
 <div id="exitModal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center hidden z-50">
   <div class="bg-white rounded-lg p-6 text-center max-w-sm w-full shadow-xl">
     <h2 class="text-xl font-semibold text-gray-800 mb-4">Wait! Don’t leave yet</h2>
@@ -339,7 +260,6 @@
     </div>
   </div>
 </div>
-<!--msg sent/failed successfully-->
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const toast = document.getElementById('successToast');
@@ -354,8 +274,6 @@
     }
   });
 </script>
-
-<!--msg pop when leaving the site without submitting contact message-->
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
@@ -388,6 +306,5 @@
   <script>
     AOS.init({ duration: 1000, once: true });
   </script>
-</div>
 </body>
 </html>
