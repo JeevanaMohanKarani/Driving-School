@@ -1,264 +1,286 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Om Sai Ram Driving School</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Om Sai Ram Driving School</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css"/>
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css"/>
 
-  <style>
-    body {
-      font-family: Poppins, sans-serif;
-      scroll-behavior: smooth;
-      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-      color: white;
-      overflow-x: hidden;
-    }
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            color: white;
+            overflow-x: hidden;
+        }
 
-    .glass {
-      backdrop-filter: blur(20px);
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
-      border-radius: 16px;
-    }
+        .glass {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            border-radius: 16px;
+        }
 
-    .neon-btn {
-      background: transparent;
-      border: 2px solid #e600ff;
-      color: #fff;
-      padding: 0.75rem 2rem;
-      border-radius: 9999px;
-      transition: all 0.3s ease;
-    }
+        .neon-btn {
+            background: transparent;
+            border: 2px solid #e600ff;
+            color: #fff;
+            padding: 0.75rem 2rem;
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+        }
 
-    .neon-btn:hover {
-      background: #e600ff;
-      color: #000;
-      transform: scale(1.05);
-      box-shadow: 0 0 10px #e600ff, 0 0 20px #e600ff;
-    }
+        .neon-btn:hover {
+            background: #e600ff;
+            color: #000;
+            transform: scale(1.05);
+            box-shadow: 0 0 10px #e600ff, 0 0 20px #e600ff;
+        }
 
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
 
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
 
-    /* --- FIXES FOR MOBILE VIEW --- */
-    @media (max-width: 767px) {
-        /* Hides the desktop menu on small screens */
-        #desktop-menu {
-            display: none !important;
-        }
+        /* --- FIXES FOR MOBILE VIEW --- */
+        @media (max-width: 767px) {
+            /* Hides the desktop menu on small screens */
+            #desktop-menu {
+                display: none !important;
+            }
 
-        /* Forces main sections to take up the full width */
-        .full-width-mobile {
-            padding-left: 1.5rem !important;
-            padding-right: 1.5rem !important;
-        }
+            /* Forces main sections to take up the full width */
+            .full-width-mobile {
+                padding-left: 1.5rem !important;
+                padding-right: 1.5rem !important;
+            }
 
-        /* Makes Hero section content stack vertically */
-        .hero-container {
-            flex-direction: column !important;
-        }
+            /* Makes Hero section content stack vertically */
+            .hero-container {
+                flex-direction: column !important;
+            }
 
-        .hero-container > div {
-            text-align: center !important;
-            width: 100% !important;
-        }
+            .hero-container > div {
+                text-align: center !important;
+                width: 100% !important;
+            }
 
-        /* Makes gallery images take up most of the screen width */
-        .gallery-image {
-            width: 85vw !important;
-            flex-shrink: 0 !important;
-        }
+            /* Makes gallery images take up most of the screen width */
+            .gallery-image {
+                width: 85vw !important;
+                flex-shrink: 0 !important;
+            }
 
-        /* Ensures the scrollable gallery occupies full width */
-        .gallery-scroll-container {
-            width: 100% !important;
-            padding-left: 1.5rem !important;
-            padding-right: 1.5rem !important;
-        }
-    }
-  </style>
+            /* Ensures the scrollable gallery occupies full width */
+            .gallery-scroll-container {
+                width: 100% !important;
+                padding-left: 1.5rem !important;
+                padding-right: 1.5rem !important;
+            }
+        }
+    </style>
 </head>
 <body>
-<nav class="fixed top-0 left-0 w-full z-50 bg-black bg-opacity-50 backdrop-blur-md">
-  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-    <h1 class="text-lg font-bold text-white">Om Sai Ram Driving School</h1>
 
-    <button id="menu-btn" class="md:hidden text-white focus:outline-none">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path id="icon-bars" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16" />
-        <path id="icon-x" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M6 18L18 6M6 6l12 12" />
-      </svg>
-    </button>
+    <nav class="fixed top-0 left-0 w-full z-50 bg-black bg-opacity-50 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+            <h1 class="text-lg font-bold text-white">Om Sai Ram Driving School</h1>
 
-    <ul class="hidden md:flex space-x-6 text-white" id="desktop-menu">
-      <li><a href="/#home" class="hover:text-pink-400">Home</a></li>
-      <li><a href="/#courses" class="hover:text-pink-400">Courses</a></li>
-      <li><a href="/#gallery" class="hover:text-pink-400">Gallery</a></li>
-      <li><a href="/#contact" class="hover:text-pink-400">Contact</a></li>
-      <li><a href="/reviews" class="hover:text-pink-400">Reviews</a></li>
-    </ul>
-  </div>
+            <button id="menu-btn" class="md:hidden text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path id="icon-bars" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    <path id="icon-x" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
 
-  <ul id="mobile-menu" class="md:hidden hidden flex-col space-y-4 px-4 pb-4 text-white text-center bg-black bg-opacity-90">
-    <li><a href="/#home" class="block hover:text-pink-400">Home</a></li>
-    <li><a href="/#courses" class="block hover:text-pink-400">Courses</a></li>
-    <li><a href="/#gallery" class="block hover:text-pink-400">Gallery</a></li>
-    <li><a href="/#contact" class="block hover:text-pink-400">Contact</a></li>
-    <li><a href="/reviews" class="block hover:text-pink-400">Reviews</a></li>
-  </ul>
-</nav>
+            <ul class="hidden md:flex space-x-6 text-white" id="desktop-menu">
+                <li><a href="/#home" class="hover:text-pink-400">Home</a></li>
+                <li><a href="/#courses" class="hover:text-pink-400">Courses</a></li>
+                <li><a href="/#gallery" class="hover:text-pink-400">Gallery</a></li>
+                <li><a href="/#contact" class="hover:text-pink-400">Contact</a></li>
+                <li><a href="/reviews" class="hover:text-pink-400">Reviews</a></li>
+            </ul>
+        </div>
 
-<%- body %>
+        <ul id="mobile-menu" class="md:hidden hidden flex-col space-y-4 px-4 pb-4 text-white text-center bg-black bg-opacity-90">
+            <li><a href="/#home" class="block hover:text-pink-400">Home</a></li>
+            <li><a href="/#courses" class="block hover:text-pink-400">Courses</a></li>
+            <li><a href="/#gallery" class="block hover:text-pink-400">Gallery</a></li>
+            <li><a href="/#contact" class="block hover:text-pink-400">Contact</a></li>
+            <li><a href="/reviews" class="block hover:text-pink-400">Reviews</a></li>
+        </ul>
+    </nav>
 
-<% if (req.query.sent === '1') { %>
-  <div id="successToast" class="fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded shadow-lg z-50 opacity-100 transition-opacity duration-500">
-    ✅ Message sent successfully!
-  </div>
-<% } %>
+    <%- body %>
 
-<div id="exitModal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center hidden z-50">
-  <div class="bg-white rounded-lg p-6 text-center max-w-sm w-full shadow-xl">
-    <h2 class="text-xl font-semibold text-gray-800 mb-4">Wait! Don’t leave yet</h2>
-    <p class="text-gray-700 mb-6">Would you like to leave us a message before you go? We’d love to reach you later.</p>
-    <div class="flex justify-center gap-4">
-      <button id="stayBtn" class="bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600">Stay</button>
-      <button id="leaveBtn" class="bg-gray-300 text-black px-4 py-2 rounded hover:bg-gray-400">Leave Anyway</button>
-    </div>
-  </div>
-</div>
+    <footer class="py-6 text-center text-gray-400">
+        © 2025 Om Sai Ram Driving School. All rights reserved.
+    </footer>
 
-<footer class="py-6 text-center text-gray-400">
-  © 2025 Om Sai Ram Driving School. All rights reserved.
-</footer>
+    <% if (req.query.sent === '1') { %>
+        <div id="contactSuccessToast" class="fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded shadow-lg z-50 transition-opacity duration-500" style="opacity: 1;">
+            ✅ Message sent successfully!
+        </div>
+    <% } %>
+    <% if (req.query.sent === '0' || req.query.error === 'email_failed') { %>
+        <div id="contactErrorToast" class="fixed top-4 right-4 bg-red-500 text-white px-4 py-2 rounded shadow-lg z-50 transition-opacity duration-500" style="opacity: 1;">
+            ❌ Failed to send message. Please try again.
+        </div>
+    <% } %>
+    <% if (req.query.submitted === '1') { %>
+        <div id="reviewSuccessToast" class="fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded shadow-lg z-50 transition-opacity duration-500" style="opacity: 1;">
+            🎉 Review submitted successfully!
+        </div>
+    <% } %>
+    <% if (req.query.error === '1' && req.query.message) { %>
+        <div id="reviewErrorToast" class="fixed top-4 right-4 bg-red-500 text-white px-4 py-2 rounded shadow-lg z-50 transition-opacity duration-500" style="opacity: 1;">
+            ⚠️ <%= req.query.message %>
+        </div>
+    <% } %>
 
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    // --- Mobile menu toggle ---
-    const menuBtn = document.getElementById("menu-btn");
-    const mobileMenu = document.getElementById("mobile-menu");
-    const iconBars = menuBtn.querySelector("svg:nth-child(1)");
-    const iconX = menuBtn.querySelector("svg:nth-child(2)");
+    <div id="exitModal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center hidden z-50">
+        <div class="bg-white rounded-lg p-6 text-center max-w-sm w-full shadow-xl">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Wait! Don’t leave yet</h2>
+            <p class="text-gray-700 mb-6">Would you like to leave us a message before you go? We’d love to reach you later.</p>
+            <div class="flex justify-center gap-4">
+                <button id="stayBtn" class="bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600">Stay</button>
+                <button id="leaveBtn" class="bg-gray-300 text-black px-4 py-2 rounded hover:bg-gray-400">Leave Anyway</button>
+            </div>
+        </div>
+    </div>
 
-    menuBtn.addEventListener("click", () => {
-      mobileMenu.classList.toggle("hidden");
-      iconBars.classList.toggle("hidden");
-      iconX.classList.toggle("hidden");
-    });
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize AOS
+            AOS.init({ duration: 1000, once: true });
 
-    // --- MODIFIED: Close menu when link is clicked, and handle navigation ---
-    mobileMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', (event) => {
-        // Close the mobile menu first
-        mobileMenu.classList.add('hidden');
-        iconBars.classList.remove('hidden');
-        iconX.classList.add('hidden');
+            // Mobile menu toggle
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const iconBars = document.getElementById('icon-bars');
+            const iconX = document.getElementById('icon-x');
 
-        // Check if the link is an internal anchor on the *current* page
-        // For example, clicking "#contact" while already on the home page.
-        // Also, ensure it's not a link to a different page's anchor (e.g., "/reviews#top")
-        if (link.hash && (link.pathname === window.location.pathname || link.pathname === '/')) {
-          event.preventDefault(); // Prevent default hash navigation
-          document.querySelector(link.hash).scrollIntoView({
-            behavior: 'smooth'
-          });
-        }
-        // For other links (like /reviews, or external links),
-        // the default behavior (navigation) will now occur because we didn't prevent it.
-      });
-    });
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                iconBars.classList.toggle('hidden');
+                iconX.classList.toggle('hidden');
+            });
 
-    // --- Toast fade out ---
-    const successToast = document.getElementById('successToast');
-    if (successToast) {
-      setTimeout(() => {
-        successToast.style.transition = 'opacity 0.5s ease';
-        successToast.style.opacity = '0';
-        setTimeout(() => {
-          successToast.remove(); // Remove from DOM after fade
-        }, 500);
-      }, 3000); // Display for 3 seconds before fading
-    }
+            // Close mobile menu when a link is clicked
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    iconBars.classList.remove('hidden');
+                    iconX.classList.add('hidden');
+                });
+            });
 
-    // --- Exit modal logic ---
-    const exitModal = document.getElementById("exitModal"); // Corrected ID
-    const stayBtn = document.getElementById("stayBtn");
-    const leaveBtn = document.getElementById("leaveBtn");
-    let exitShown = false; // Flag to show modal only once
+            // Universal Toast Fade Out Logic
+            const toasts = document.querySelectorAll('[id$="Toast"]'); // Selects all elements whose ID ends with "Toast"
+            toasts.forEach(toast => {
+                if (toast) {
+                    setTimeout(() => {
+                        toast.style.transition = 'opacity 0.5s ease';
+                        toast.style.opacity = '0';
+                        setTimeout(() => {
+                            toast.remove(); // Remove after fade-out
+                        }, 500); 
+                    }, 3000); // Start fade after 3 seconds
+                }
+            });
 
-    function showExitModal() {
-      const name = document.querySelector('input[name="name"]')?.value.trim(); // Use optional chaining
-      const email = document.querySelector('input[name="email"]')?.value.trim();
-      const message = document.querySelector('textarea[name="message"]')?.value.trim();
-      const hasTypedMessage = name || email || message;
+            // Exit Modal Logic
+            const exitModal = document.getElementById('exitModal'); // Corrected ID
+            const stayBtn = document.getElementById('stayBtn');
+            const leaveBtn = document.getElementById('leaveBtn'); // Corrected ID (was closeModal)
 
-      // Only show if modal hasn't been shown AND user has typed something
-      if (!exitShown && hasTypedMessage) {
-        exitModal.classList.remove("hidden");
-        exitShown = true;
-      }
-    }
+            let isMessageSent = false;
+            let exitModalShown = false;
 
-    // Show modal when mouse leaves top of window
-    document.addEventListener("mouseout", (e) => {
-      if (e.clientY < 10 && e.relatedTarget === null) { // e.relatedTarget === null for leaving the document
-        showExitModal();
-      }
-    });
+            // Watch for contact form submission to mark the message as sent
+            const contactForm = document.querySelector('form[action="/contact"]');
+            if (contactForm) {
+                contactForm.addEventListener('submit', () => {
+                    isMessageSent = true;
+                });
+            }
 
-    // Show modal when user scrolls near bottom (adjust 100 to your preference)
-    window.addEventListener("scroll", () => {
-      if (
-        (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 100)
-      ) {
-        showExitModal();
-      }
-    });
+            function showExitModal() {
+                // Check if the current page is the contact section or if any contact fields are filled
+                const nameField = document.querySelector('input[name="name"]');
+                const emailField = document.querySelector('input[name="email"]');
+                const messageField = document.querySelector('textarea[name="message"]');
 
-    // Close modal actions
-    stayBtn.addEventListener("click", () => {
-      exitModal.classList.add("hidden");
-      // Optionally scroll to contact section if user clicked stay
-      document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
-    });
+                const hasTypedMessage = (nameField && nameField.value.trim()) || 
+                                        (emailField && emailField.value.trim()) || 
+                                        (messageField && messageField.value.trim());
+                
+                // Only show if a message hasn't been sent AND user has typed something
+                if (!exitModalShown && !isMessageSent && hasTypedMessage) {
+                    exitModal.classList.remove('hidden');
+                    exitModalShown = true;
+                }
+            }
 
-    leaveBtn.addEventListener("click", () => {
-      exitModal.classList.add("hidden");
-      // If you want to force leaving, you might need to use window.location.href = some_other_page
-      // but typically this button just closes the modal and allows natural browser exit.
-    });
+            // Show modal when mouse leaves top of window
+            document.addEventListener('mouseout', (e) => {
+                if (e.clientY < 10) {
+                    showExitModal();
+                }
+            });
 
-    // Prevent browser's default beforeunload message if modal has been shown
-    window.addEventListener('beforeunload', function (e) {
-      const name = document.querySelector('input[name="name"]')?.value.trim();
-      const email = document.querySelector('input[name="email"]')?.value.trim();
-      const message = document.querySelector('textarea[name="message"]')?.value.trim();
-      const hasTypedMessage = name || email || message;
+            // Show modal when user scrolls near bottom
+            window.addEventListener('scroll', () => {
+                if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
+                    showExitModal();
+                }
+            });
 
-      // Only show native warning if exit modal hasn't been shown AND user has typed
-      if (!exitShown && hasTypedMessage) {
-        e.preventDefault(); // Standard for modern browsers
-        e.returnValue = ''; // For older browsers
-        return ''; // For some modern browsers
-      }
-    });
-  });
+            // Close modal with Stay button
+            stayBtn.addEventListener('click', () => {
+                exitModal.classList.add('hidden');
+            });
 
-  // --- AOS Initialization ---
-  AOS.init({ duration: 1000, once: true });
-</script>
+            // Close modal with Leave Anyway button
+            leaveBtn.addEventListener('click', () => {
+                exitModal.classList.add('hidden');
+                // You might want to add logic here to redirect or do nothing else
+                // depending on whether you actually want to prevent navigation.
+                // For 'leave anyway', just hiding the modal is usually sufficient.
+            });
+        });
+
+        // This prevents the default browser prompt for 'beforeunload' for modern browsers
+        // It's generally better to use a custom modal for user experience.
+        window.addEventListener('beforeunload', function (e) {
+            const name = document.querySelector('input[name="name"]');
+            const email = document.querySelector('input[name="email"]');
+            const message = document.querySelector('textarea[name="message"]');
+
+            const hasTypedMessage = (name && name.value.trim()) || 
+                                    (email && email.value.trim()) || 
+                                    (message && message.value.trim());
+
+            // If a message hasn't been sent and the user has typed, prompt them.
+            // This will trigger the custom modal (exitModal) if it hasn't been shown,
+            // or the browser's native prompt if not.
+            if (!document.getElementById('exitModal').classList.contains('hidden') || (hasTypedMessage && !isMessageSent)) {
+                // Modern browsers mostly ignore custom messages for beforeunload for security.
+                // They just show a generic message.
+                e.preventDefault(); 
+                e.returnValue = ''; // Required for Chrome to show prompt
+            }
+        });
+    </script>
 </body>
 </html>

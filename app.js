@@ -63,20 +63,19 @@ function saveReview(newReview) {
 
 // ===== GET: Home Page =====
 app.get('/', (req, res) => {
-    const reviews = loadReviews();
-    // Sort reviews by timestamp (if available) or simply take the latest 2 from the end
-    // Assuming reviews are pushed to the end, the last two are the newest.
-    // .reverse() is used to display the newest review first in the slice.
-    const latestReviews = reviews.slice().sort((a, b) => {
-        // If reviews have a timestamp, sort by it. Otherwise, assume order of entry.
-        if (a.timestamp && b.timestamp) {
-            return new Date(b.timestamp) - new Date(a.timestamp);
-        }
-        return 0; // Maintain original order if no timestamp for sorting
-    }).slice(0, 2); // Get the 2 most recent reviews (after sorting)
-
-    res.render('index', { reviews: latestReviews });
-    // 'req' is now automatically available in 'index.ejs' and 'layout.ejs' via res.locals
+    // You mentioned only wanting 'latestReviews' on the homepage if any.
+    // However, the `index.ejs` provided above does NOT contain a reviews section.
+    // So, 'reviews' data is not strictly needed for the default index page.
+    // If you add a small "Latest Reviews" section to index.ejs, you can pass this:
+    // const reviews = loadReviews();
+    // const latestReviews = reviews.slice().sort((a, b) => {
+    //     if (a.timestamp && b.timestamp) {
+    //         return new Date(b.timestamp) - new Date(a.timestamp);
+    //     }
+    //     return 0;
+    // }).slice(0, 2);
+    // res.render('index', { reviews: latestReviews }); // if needed
+    res.render('index'); // No specific data needed for the current index.ejs
 });
 
 // ===== GET: Separate Reviews Page =====
@@ -94,7 +93,7 @@ app.get('/reviews', (req, res) => {
 
 // ===== Anchor Redirects (for navigation within the single page layout) =====
 // These redirect to the root path and rely on client-side JS for scrolling to anchors.
-app.get('/about', (req, res) => res.redirect('/#about'));
+app.get('/about', (req, res) => res.redirect('/#about')); // Note: Your HTML doesn't have an #about section
 app.get('/courses', (req, res) => res.redirect('/#courses'));
 app.get('/gallery', (req, res) => res.redirect('/#gallery'));
 app.get('/contact', (req, res) => res.redirect('/#contact'));
