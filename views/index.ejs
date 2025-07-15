@@ -75,6 +75,30 @@
     <p class="text-sm text-gray-300 mt-4">Swipe right to view more →</p>
 </section>
 
+<section id="home-reviews" class="py-20 px-6 text-white full-width-mobile" data-aos="fade-up">
+    <h2 class="text-4xl font-bold text-center mb-12">What Our Students Say</h2>
+    <div class="max-w-4xl mx-auto mt-10 space-y-6">
+        <% if (latestReviews.length === 0) { %>
+            <p class="text-center text-gray-400">No reviews yet. Be the first to share your experience!</p>
+        <% } else { %>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <% latestReviews.forEach(r => { %>
+                    <div class="glass p-6 flex flex-col justify-between">
+                        <div>
+                            <p class="text-pink-300 font-semibold mb-2 text-lg"><%= r.name %></p>
+                            <p class="italic text-gray-300 mb-3">"<%= r.comment %>"</p>
+                        </div>
+                        <p class="text-yellow-400 text-sm">Rating: <%= '⭐'.repeat(r.rating) %></p>
+                    </div>
+                <% }) %>
+            </div>
+            <div class="text-center mt-8">
+                <a href="/reviews" class="neon-btn inline-block">View All Reviews</a>
+            </div>
+        <% } %>
+    </div>
+</section>
+
 <section id="contact" class="py-20 px-6 text-white full-width-mobile" data-aos="fade-up">
     <h2 class="text-4xl font-bold text-center mb-12">Contact Us</h2>
     <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto glass p-8">

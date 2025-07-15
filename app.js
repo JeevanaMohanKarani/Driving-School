@@ -61,28 +61,27 @@ function saveReview(newReview) {
     }
 }
 
-// ===== GET: Home Page =====
+// ===== GET: Home Page (Updated to pass latest reviews) =====
 app.get('/', (req, res) => {
-    // You mentioned only wanting 'latestReviews' on the homepage if any.
-    // However, the `index.ejs` provided above does NOT contain a reviews section.
-    // So, 'reviews' data is not strictly needed for the default index page.
-    // If you add a small "Latest Reviews" section to index.ejs, you can pass this:
-    // const reviews = loadReviews();
-    // const latestReviews = reviews.slice().sort((a, b) => {
-    //     if (a.timestamp && b.timestamp) {
-    //         return new Date(b.timestamp) - new Date(a.timestamp);
-    //     }
-    //     return 0;
-    // }).slice(0, 2);
-    // res.render('index', { reviews: latestReviews }); // if needed
-    res.render('index'); // No specific data needed for the current index.ejs
+    const allReviews = loadReviews();
+    // Sort reviews by timestamp (newest first) and take the latest 2
+    const latestReviews = allReviews.slice() // Create a shallow copy to avoid modifying original array
+                                  .sort((a, b) => {
+                                      if (a.timestamp && b.timestamp) {
+                                          return new Date(b.timestamp) - new Date(a.timestamp);
+                                      }
+                                      return 0; // Maintain order if no timestamp or invalid
+                                  })
+                                  .slice(0, 2); // Get only the top 2 latest reviews
+
+    res.render('index', { latestReviews: latestReviews });
 });
 
-// ===== GET: Separate Reviews Page =====
+// ===== GET: Separate Reviews Page (Displays all reviews) =====
 app.get('/reviews', (req, res) => {
-    const reviews = loadReviews();
+    const allReviews = loadReviews();
     // Sort all reviews by timestamp to display newest first on the dedicated reviews page
-    const sortedReviews = reviews.slice().sort((a, b) => {
+    const sortedReviews = allReviews.slice().sort((a, b) => {
         if (a.timestamp && b.timestamp) {
             return new Date(b.timestamp) - new Date(a.timestamp);
         }
