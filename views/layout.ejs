@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8" />  
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Om Sai Ram Driving School</title>
 
@@ -12,336 +12,253 @@
 
   <style>
     body {
-      font-family: 'Poppins', sans-serif;
+      font-family: Poppins, sans-serif;
       scroll-behavior: smooth;
       background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
       color: white;
-      overflow-x: hidden;
-    }
+      overflow-x: hidden;
+    }
 
-    .glass {
-      backdrop-filter: blur(20px);
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
-      border-radius: 16px;
-    }
+    .glass {
+      backdrop-filter: blur(20px);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+      border-radius: 16px;
+    }
 
-    .neon-btn {
-      background: transparent;
-      border: 2px solid #e600ff;
-      color: #fff;
-      padding: 0.75rem 2rem;
-      border-radius: 9999px;
-      transition: all 0.3s ease;
-    }
+    .neon-btn {
+      background: transparent;
+      border: 2px solid #e600ff;
+      color: #fff;
+      padding: 0.75rem 2rem;
+      border-radius: 9999px;
+      transition: all 0.3s ease;
+    }
 
-    .neon-btn:hover {
-      background: #e600ff;
-      color: #000;
-      transform: scale(1.05);
-      box-shadow: 0 0 10px #e600ff, 0 0 20px #e600ff;
-    }
+    .neon-btn:hover {
+      background: #e600ff;
+      color: #000;
+      transform: scale(1.05);
+      box-shadow: 0 0 10px #e600ff, 0 0 20px #e600ff;
+    }
 
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
 
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
 
-    /* --- FIXES FOR MOBILE VIEW --- */
-    @media (max-width: 767px) {
-        /* Hides the desktop menu on small screens */
-        #desktop-menu {
-            display: none !important;
-        }
+    /* --- FIXES FOR MOBILE VIEW --- */
+    @media (max-width: 767px) {
+        /* Hides the desktop menu on small screens */
+        #desktop-menu {
+            display: none !important;
+        }
 
-        /* Forces main sections to take up the full width */
-        .full-width-mobile {
-            padding-left: 1.5rem !important;
-            padding-right: 1.5rem !important;
-        }
+        /* Forces main sections to take up the full width */
+        .full-width-mobile {
+            padding-left: 1.5rem !important;
+            padding-right: 1.5rem !important;
+        }
 
-        /* Makes Hero section content stack vertically */
-        .hero-container {
-            flex-direction: column !important;
-        }
+        /* Makes Hero section content stack vertically */
+        .hero-container {
+            flex-direction: column !important;
+        }
 
-        .hero-container > div {
-            text-align: center !important;
-            width: 100% !important;
-        }
+        .hero-container > div {
+            text-align: center !important;
+            width: 100% !important;
+        }
 
-        /* Makes gallery images take up most of the screen width */
-        .gallery-image {
-            width: 85vw !important;
-            flex-shrink: 0 !important;
-        }
+        /* Makes gallery images take up most of the screen width */
+        .gallery-image {
+            width: 85vw !important;
+            flex-shrink: 0 !important;
+        }
 
-        /* Ensures the scrollable gallery occupies full width */
-        .gallery-scroll-container {
-            width: 100% !important;
-            padding-left: 1.5rem !important;
-            padding-right: 1.5rem !important;
-        }
-    }
-  </style>
+        /* Ensures the scrollable gallery occupies full width */
+        .gallery-scroll-container {
+            width: 100% !important;
+            padding-left: 1.5rem !important;
+            padding-right: 1.5rem !important;
+        }
+    }
+  </style>
 </head>
 <body>
 <nav class="fixed top-0 left-0 w-full z-50 bg-black bg-opacity-50 backdrop-blur-md">
   <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-    <h1 class="text-lg font-bold text-white">Om Sai Ram Driving School</h1>
+    <h1 class="text-lg font-bold text-white">Om Sai Ram Driving School</h1>
 
-    <button id="menu-btn" class="md:hidden text-white focus:outline-none">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path id="icon-bars" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16" />
-        <path id="icon-x" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M6 18L18 6M6 6l12 12" />
-      </svg>
-    </button>
+    <button id="menu-btn" class="md:hidden text-white focus:outline-none">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path id="icon-bars" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16" />
+        <path id="icon-x" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
 
-    <ul class="hidden md:flex space-x-6 text-white" id="desktop-menu">
-      <li><a href="#home" class="hover:text-pink-400">Home</a></li>
-      <li><a href="#courses" class="hover:text-pink-400">Courses</a></li>
-      <li><a href="#gallery" class="hover:text-pink-400">Gallery</a></li>
-      <li><a href="#contact" class="hover:text-pink-400">Contact</a></li>
-      <li><a href="/reviews" class="hover:text-pink-400">Reviews</a></li>
-    </ul>
-  </div>
+    <ul class="hidden md:flex space-x-6 text-white" id="desktop-menu">
+      <li><a href="/#home" class="hover:text-pink-400">Home</a></li>
+      <li><a href="/#courses" class="hover:text-pink-400">Courses</a></li>
+      <li><a href="/#gallery" class="hover:text-pink-400">Gallery</a></li>
+      <li><a href="/#contact" class="hover:text-pink-400">Contact</a></li>
+      <li><a href="/reviews" class="hover:text-pink-400">Reviews</a></li>
+    </ul>
+  </div>
 
-  <ul id="mobile-menu" class="md:hidden hidden flex-col space-y-4 px-4 pb-4 text-white text-center bg-black bg-opacity-90">
-    <li><a href="#home" class="block hover:text-pink-400">Home</a></li>
-    <li><a href="#courses" class="block hover:text-pink-400">Courses</a></li>
-    <li><a href="#gallery" class="block hover:text-pink-400">Gallery</a></li>
-    <li><a href="#contact" class="block hover:text-pink-400">Contact</a></li>
-    <li><a href="/reviews" class="block hover:text-pink-400">Reviews</a></li>
-  </ul>
+  <ul id="mobile-menu" class="md:hidden hidden flex-col space-y-4 px-4 pb-4 text-white text-center bg-black bg-opacity-90">
+    <li><a href="/#home" class="block hover:text-pink-400">Home</a></li>
+    <li><a href="/#courses" class="block hover:text-pink-400">Courses</a></li>
+    <li><a href="/#gallery" class="block hover:text-pink-400">Gallery</a></li>
+    <li><a href="/#contact" class="block hover:text-pink-400">Contact</a></li>
+    <li><a href="/reviews" class="block hover:text-pink-400">Reviews</a></li>
+  </ul>
 </nav>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const menuBtn = document.getElementById('menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const iconBars = document.getElementById('icon-bars');
-    const iconX = document.getElementById('icon-x');
+<%- body %>
 
-    menuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-      iconBars.classList.toggle('hidden');
-      iconX.classList.toggle('hidden');
-    });
-
-    // Close menu when link is clicked
-    mobileMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
-        iconBars.classList.remove('hidden');
-        iconX.classList.add('hidden');
-      });
-    });
-  });
-</script>
-
-<section id="home" class="min-h-screen flex items-center justify-center pt-24 px-6 full-width-mobile">
-  <div class="max-w-6xl w-full flex flex-col md:flex-row items-center justify-between gap-10 glass p-6 md:p-10 hero-container">
-    <div class="flex-1 text-center md:text-left" data-aos="fade-right">
-      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4" style="color:#ffffff;">Learn Driving With Experts</h2>
-      <p class="text-gray-300 mb-6 text-base sm:text-lg">We offer expert-led driving lessons with certified trainers. Gain confidence and hit the road safely!</p>
-      <div class="flex gap-4 justify-center md:justify-start">
-        <a href="#contact" class="neon-btn">Join Now</a>
-        <a href="#courses" class="neon-btn">View Courses</a>
-      </div>
-    </div>
-    <div class="flex-1 text-center" data-aos="fade-left">
-      <img src="/images/car6.jpg" alt="Hero Image" class="rounded-lg shadow-lg w-full max-w-sm mx-auto md:max-w-md"/>
-    </div>
-  </div>
-</section>
-
-<section id="courses" class="py-20 px-6 text-center full-width-mobile" data-aos="fade-up">
-  <h3 class="text-3xl font-bold mb-10" style="color:#ffffff;">Our Services</h3>
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-    <div class="glass p-6">
-      <h4 class="text-xl font-semibold mb-2 text-white">Driving Licence</h4>
-      <p class="text-gray-300">Assistance with learner and permanent driving licences.</p>
-    </div>
-    <div class="glass p-6">
-      <h4 class="text-xl font-semibold mb-2 text-white">Heavy Licence</h4>
-      <p class="text-gray-300">Training and licensing for heavy commercial vehicles.</p>
-    </div>
-    <div class="glass p-6">
-      <h4 class="text-xl font-semibold mb-2 text-white">Other State Licence</h4>
-      <p class="text-gray-300">Apply or transfer your licence from other states easily.</p>
-    </div>
-    <div class="glass p-6">
-      <h4 class="text-xl font-semibold mb-2 text-white">Pollution Certificate</h4>
-      <p class="text-gray-300">Get your vehicle’s pollution check done quickly.</p>
-    </div>
-    <div class="glass p-6">
-      <h4 class="text-xl font-semibold mb-2 text-white">Vehicle Insurance</h4>
-      <p class="text-gray-300">Affordable and fast vehicle insurance services.</p>
-    </div>
-    <div class="glass p-6">
-      <h4 class="text-xl font-semibold mb-2 text-white">Name Transfer</h4>
-      <p class="text-gray-300">Hassle-free vehicle ownership transfer process.</p>
-    </div>
-    <div class="glass p-6">
-      <h4 class="text-xl font-semibold mb-2 text-white">FC Works & Registration</h4>
-      <p class="text-gray-300">Get your Fitness Certificate and vehicle re-registered.</p>
-    </div>
-    <div class="glass p-6">
-      <h4 class="text-xl font-semibold mb-2 text-white">Vehicle Registration</h4>
-      <p class="text-gray-300">Complete support for new vehicle registration.</p>
-    </div>
-    <div class="glass p-6">
-      <h4 class="text-xl font-semibold mb-2 text-white">Tax & Permit Works</h4>
-      <p class="text-gray-300">Manage road taxes and obtain vehicle permits.</p>
-    </div>
-    <div class="glass p-6">
-      <h4 class="text-xl font-semibold mb-2 text-white">Other State Permits</h4>
-      <p class="text-gray-300">Easily get interstate driving and vehicle permits.</p>
-    </div>
-  </div>
-</section>
-
-<section id="gallery" class="py-20 text-center bg-black bg-opacity-20 full-width-mobile" data-aos="fade-up">
-  <h3 class="text-3xl font-bold mb-10 text-white">Gallery</h3>
-
-  <div class="relative mx-auto overflow-x-auto scroll-smooth no-scrollbar py-2 gallery-scroll-container">
-    <div class="flex gap-6 pb-4">
-      <img src="/images/car1.jpg" alt="Car 1" class="w-[85vw] md:w-96 flex-shrink-0 rounded-lg shadow-lg object-cover gallery-image" />
-      <img src="/images/car2.jpg" alt="Car 2" class="w-[85vw] md:w-96 flex-shrink-0 rounded-lg shadow-lg object-cover gallery-image" />
-      <img src="/images/car3.jpg" alt="Car 3" class="w-[85vw] md:w-96 flex-shrink-0 rounded-lg shadow-lg object-cover gallery-image" />
-      <img src="/images/car4.jpg" alt="Car 4" class="w-[85vw] md:w-96 flex-shrink-0 rounded-lg shadow-lg object-cover gallery-image" />
-    </div>
-  </div>
-
-  <p class="text-sm text-gray-300 mt-4">Swipe right to view more →</p>
-</section>
-
-
-<section id="contact" class="py-20 px-6 text-white full-width-mobile" data-aos="fade-up">
-  <h2 class="text-4xl font-bold text-center mb-12">Contact Us</h2>
-  <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto glass p-8">
-    
-    <div>
-      <h3 class="text-2xl font-semibold mb-4">Get In Touch</h3>
-      <p class="mb-2"><strong>Instructor:</strong> Jaya Kumar</p>
-      <p class="mb-2"><strong>Phone:</strong> 9666061305</p>
-      <p class="mb-2"><strong>Email:</strong> <a href="mailto:Omsairamvehicleinsurance@gmail.com" class="text-pink-400 underline">Omsairamvehicleinsurance@gmail.com</a></p>
-      <p class="mb-2"><strong>School:</strong> Om Sai Ram Motor Driving School</p>
-    </div>
-
-    <form action="/contact" method="POST" class="space-y-4">
-      <input type="text" name="name" placeholder="Your Name" required class="w-full p-3 rounded bg-gray-900 text-white border border-gray-700"/>
-      <input type="email" name="email" placeholder="Your Email" required class="w-full p-3 rounded bg-gray-900 text-white border border-gray-700"/>
-      <textarea name="message" rows="5" placeholder="Your Message" required class="w-full p-3 rounded bg-gray-900 text-white border border-gray-700"></textarea>
-      <button type="submit" class="neon-btn w-full">Send Message</button>
-    </form>
-  </div>
-</section>
 <% if (req.query.sent === '1') { %>
-  <div id="successToast" class="fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded shadow-lg z-50" style="opacity: 1;">
-    ✅ Message sent successfully!
-  </div>
+  <div id="successToast" class="fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded shadow-lg z-50 opacity-100 transition-opacity duration-500">
+    ✅ Message sent successfully!
+  </div>
 <% } %>
 
-
-<section id="reviews" class="py-20 px-6 text-white full-width-mobile" data-aos="fade-up">
-  <h2 class="text-4xl font-bold text-center mb-12">Student Reviews</h2>
-
-  <form action="/submit-review" method="POST" class="max-w-3xl mx-auto glass p-6 space-y-4">
-    <input type="text" name="name" placeholder="Your Name" required class="w-full p-3 rounded bg-gray-900 text-white border border-gray-700"/>
-    
-    <select name="rating" required class="w-full p-3 rounded bg-gray-900 text-white border border-gray-700">
-      <option value="5">⭐⭐⭐⭐⭐</option>
-      <option value="4">⭐⭐⭐⭐</option>
-      <option value="3">⭐⭐⭐</option>
-      <option value="2">⭐⭐</option>
-      <option value="1">⭐</option>
-    </select>
-    
-    <textarea name="comment" rows="4" placeholder="Your Comment" required class="w-full p-3 rounded bg-gray-900 text-white border border-gray-700"></textarea>
-    <button type="submit" class="neon-btn w-full">Submit Review</button>
-  </form>
-
-  <div class="max-w-4xl mx-auto mt-10 space-y-6">
-    <% if (reviews.length === 0) { %>
-      <p class="text-center text-gray-400">No reviews yet. Be the first to comment!</p>
-    <% } else { %>
-      <% reviews.slice().reverse().forEach(r => { %>
-        <div class="glass p-4">
-          <p class="text-pink-300 font-semibold"><%= r.name %></p>
-          <p class="italic text-sm mb-1">"<%= r.comment %>"</p>
-          <p class="text-yellow-400">Rating: <%= '⭐'.repeat(r.rating) %></p>
-        </div>
-      <% }) %>
-    <% } %>
-  </div>
-
-</section>
-  <footer class="py-6 text-center text-gray-400">
-    © 2025 Om Sai Ram Driving School. All rights reserved.
-  </footer>
 <div id="exitModal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center hidden z-50">
-  <div class="bg-white rounded-lg p-6 text-center max-w-sm w-full shadow-xl">
-    <h2 class="text-xl font-semibold text-gray-800 mb-4">Wait! Don’t leave yet</h2>
-    <p class="text-gray-700 mb-6">Would you like to leave us a message before you go? We’d love to reach you later.</p>
-    <div class="flex justify-center gap-4">
-      <button id="stayBtn" class="bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600">Stay</button>
-      <button id="leaveBtn" class="bg-gray-300 text-black px-4 py-2 rounded hover:bg-gray-400">Leave Anyway</button>
-    </div>
-  </div>
+  <div class="bg-white rounded-lg p-6 text-center max-w-sm w-full shadow-xl">
+    <h2 class="text-xl font-semibold text-gray-800 mb-4">Wait! Don’t leave yet</h2>
+    <p class="text-gray-700 mb-6">Would you like to leave us a message before you go? We’d love to reach you later.</p>
+    <div class="flex justify-center gap-4">
+      <button id="stayBtn" class="bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600">Stay</button>
+      <button id="leaveBtn" class="bg-gray-300 text-black px-4 py-2 rounded hover:bg-gray-400">Leave Anyway</button>
+    </div>
+  </div>
 </div>
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const toast = document.getElementById('successToast');
-    if (toast) {
-      setTimeout(() => {
-        toast.style.transition = 'opacity 0.5s ease';
-        toast.style.opacity = '0';
-        setTimeout(() => {
-          toast.style.display = 'none';
-        }, 500); // wait until fade-out is done
-      }, 3000); // start fade after 3 seconds
-    }
-  });
-</script>
+
+<footer class="py-6 text-center text-gray-400">
+  © 2025 Om Sai Ram Driving School. All rights reserved.
+</footer>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    let isMessageSent = false;
+  document.addEventListener("DOMContentLoaded", () => {
+    // --- Mobile menu toggle ---
+    const menuBtn = document.getElementById("menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const iconBars = menuBtn.querySelector("svg:nth-child(1)");
+    const iconX = menuBtn.querySelector("svg:nth-child(2)");
 
-    // Watch for form submission to mark the message as sent
-    const contactForm = document.querySelector('form[action="/contact"]');
-    if (contactForm) {
-      contactForm.addEventListener('submit', () => {
-        isMessageSent = true;
-      });
-    }
+    menuBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+      iconBars.classList.toggle("hidden");
+      iconX.classList.toggle("hidden");
+    });
 
-    // Show warning if user tries to leave without submitting the message
-    window.addEventListener('beforeunload', function (e) {
-      const name = document.querySelector('input[name="name"]').value.trim();
-      const email = document.querySelector('input[name="email"]').value.trim();
-      const message = document.querySelector('textarea[name="message"]').value.trim();
+    // --- MODIFIED: Close menu when link is clicked, and handle navigation ---
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', (event) => {
+        // Close the mobile menu first
+        mobileMenu.classList.add('hidden');
+        iconBars.classList.remove('hidden');
+        iconX.classList.add('hidden');
 
-      const hasTypedMessage = name || email || message;
+        // Check if the link is an internal anchor on the *current* page
+        // For example, clicking "#contact" while already on the home page.
+        // Also, ensure it's not a link to a different page's anchor (e.g., "/reviews#top")
+        if (link.hash && (link.pathname === window.location.pathname || link.pathname === '/')) {
+          event.preventDefault(); // Prevent default hash navigation
+          document.querySelector(link.hash).scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
+        // For other links (like /reviews, or external links),
+        // the default behavior (navigation) will now occur because we didn't prevent it.
+      });
+    });
 
-      if (!isMessageSent && hasTypedMessage) {
-        const confirmationMessage = "You haven’t submitted your message yet. Are you sure you want to leave?";
-        (e || window.event).returnValue = confirmationMessage; // For legacy browsers
-        return confirmationMessage; // For modern browsers
-      }
-    });
-  });
+    // --- Toast fade out ---
+    const successToast = document.getElementById('successToast');
+    if (successToast) {
+      setTimeout(() => {
+        successToast.style.transition = 'opacity 0.5s ease';
+        successToast.style.opacity = '0';
+        setTimeout(() => {
+          successToast.remove(); // Remove from DOM after fade
+        }, 500);
+      }, 3000); // Display for 3 seconds before fading
+    }
+
+    // --- Exit modal logic ---
+    const exitModal = document.getElementById("exitModal"); // Corrected ID
+    const stayBtn = document.getElementById("stayBtn");
+    const leaveBtn = document.getElementById("leaveBtn");
+    let exitShown = false; // Flag to show modal only once
+
+    function showExitModal() {
+      const name = document.querySelector('input[name="name"]')?.value.trim(); // Use optional chaining
+      const email = document.querySelector('input[name="email"]')?.value.trim();
+      const message = document.querySelector('textarea[name="message"]')?.value.trim();
+      const hasTypedMessage = name || email || message;
+
+      // Only show if modal hasn't been shown AND user has typed something
+      if (!exitShown && hasTypedMessage) {
+        exitModal.classList.remove("hidden");
+        exitShown = true;
+      }
+    }
+
+    // Show modal when mouse leaves top of window
+    document.addEventListener("mouseout", (e) => {
+      if (e.clientY < 10 && e.relatedTarget === null) { // e.relatedTarget === null for leaving the document
+        showExitModal();
+      }
+    });
+
+    // Show modal when user scrolls near bottom (adjust 100 to your preference)
+    window.addEventListener("scroll", () => {
+      if (
+        (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 100)
+      ) {
+        showExitModal();
+      }
+    });
+
+    // Close modal actions
+    stayBtn.addEventListener("click", () => {
+      exitModal.classList.add("hidden");
+      // Optionally scroll to contact section if user clicked stay
+      document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
+    });
+
+    leaveBtn.addEventListener("click", () => {
+      exitModal.classList.add("hidden");
+      // If you want to force leaving, you might need to use window.location.href = some_other_page
+      // but typically this button just closes the modal and allows natural browser exit.
+    });
+
+    // Prevent browser's default beforeunload message if modal has been shown
+    window.addEventListener('beforeunload', function (e) {
+      const name = document.querySelector('input[name="name"]')?.value.trim();
+      const email = document.querySelector('input[name="email"]')?.value.trim();
+      const message = document.querySelector('textarea[name="message"]')?.value.trim();
+      const hasTypedMessage = name || email || message;
+
+      // Only show native warning if exit modal hasn't been shown AND user has typed
+      if (!exitShown && hasTypedMessage) {
+        e.preventDefault(); // Standard for modern browsers
+        e.returnValue = ''; // For older browsers
+        return ''; // For some modern browsers
+      }
+    });
+  });
+
+  // --- AOS Initialization ---
+  AOS.init({ duration: 1000, once: true });
 </script>
-  <script>
-    AOS.init({ duration: 1000, once: true });
-  </script>
 </body>
 </html>

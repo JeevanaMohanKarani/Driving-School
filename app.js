@@ -11,94 +11,149 @@ const port = process.env.PORT || 3000;
 // ===== File Path for Reviews =====
 const reviewsPath = path.join(__dirname, 'data', 'reviews.json');
 
+// Ensure 'data' directory exists and reviews.json file is initialized
+if (!fs.existsSync(path.join(__dirname, 'data'))) {
+    fs.mkdirSync(path.join(__dirname, 'data'));
+}
+if (!fs.existsSync(reviewsPath)) {
+    fs.writeFileSync(reviewsPath, '[]', 'utf-8'); // Initialize with an empty array
+}
+
 // ===== Middleware =====
+// Serve static files from the 'public' directory
 app.use(express.static('public'));
+// Parse URL-encoded bodies (for form data)
 app.use(bodyParser.urlencoded({ extended: true }));
+// Use express-ejs-layouts middleware
 app.use(expressLayouts);
 
-// ===== View Engine =====
-app.set('view engine', 'ejs');
-app.set('layout', 'layout');
+// --- CRITICAL MODIFICATION: Make 'req' available to all EJS templates via res.locals ---
+app.use((req, res, next) => {
+    res.locals.req = req; // Expose the 'req' object to all EJS templates
+    next(); // Pass control to the next middleware or route handler
+});
+// --- END OF CRITICAL MODIFICATION ---
+
+// ===== View Engine Setup =====
+app.set('view engine', 'ejs'); // Set EJS as the template engine
+app.set('views', path.join(__dirname, 'views')); // Specify the views directory
+app.set('layout', 'layout'); // Set 'layout.ejs' as the default layout for all views
 
 // ===== Helper: Load Reviews from File =====
 function loadReviews() {
-  try {
-    const data = fs.readFileSync(reviewsPath, 'utf-8');
-    return JSON.parse(data);
-  } catch {
-    return [];
-  }
+    try {
+        const data = fs.readFileSync(reviewsPath, 'utf-8');
+        return JSON.parse(data);
+    } catch (error) {
+        console.error("Error loading reviews from file:", error.message);
+        return []; // Return an empty array if file is unreadable or empty/corrupt
+    }
 }
 
 // ===== Helper: Save a Review to File =====
 function saveReview(newReview) {
-  const allReviews = loadReviews();
-  allReviews.push(newReview);
-  fs.writeFileSync(reviewsPath, JSON.stringify(allReviews, null, 2));
+    const allReviews = loadReviews();
+    allReviews.push(newReview);
+    try {
+        fs.writeFileSync(reviewsPath, JSON.stringify(allReviews, null, 2), 'utf-8');
+    } catch (error) {
+        console.error("Error saving review to file:", error.message);
+    }
 }
 
-// ===== GET: Home Page (latest 2 reviews only) =====
+// ===== GET: Home Page =====
 app.get('/', (req, res) => {
-  const reviews = loadReviews();
-  const latestReviews = reviews.slice(-2).reverse(); // get latest 2
-  res.render('index', { reviews: latestReviews, req });
+    const reviews = loadReviews();
+    // Sort reviews by timestamp (if available) or simply take the latest 2 from the end
+    // Assuming reviews are pushed to the end, the last two are the newest.
+    // .reverse() is used to display the newest review first in the slice.
+    const latestReviews = reviews.slice().sort((a, b) => {
+        // If reviews have a timestamp, sort by it. Otherwise, assume order of entry.
+        if (a.timestamp && b.timestamp) {
+            return new Date(b.timestamp) - new Date(a.timestamp);
+        }
+        return 0; // Maintain original order if no timestamp for sorting
+    }).slice(0, 2); // Get the 2 most recent reviews (after sorting)
+
+    res.render('index', { reviews: latestReviews });
+    // 'req' is now automatically available in 'index.ejs' and 'layout.ejs' via res.locals
 });
 
 // ===== GET: Separate Reviews Page =====
 app.get('/reviews', (req, res) => {
-  const reviews = loadReviews();
-  res.render('reviews', { reviews });
+    const reviews = loadReviews();
+    // Sort all reviews by timestamp to display newest first on the dedicated reviews page
+    const sortedReviews = reviews.slice().sort((a, b) => {
+        if (a.timestamp && b.timestamp) {
+            return new Date(b.timestamp) - new Date(a.timestamp);
+        }
+        return 0;
+    });
+    res.render('reviews', { reviews: sortedReviews });
 });
 
-// ===== Anchor Redirects =====
-app.get('/about',   (req, res) => res.redirect('/#about'));
+// ===== Anchor Redirects (for navigation within the single page layout) =====
+// These redirect to the root path and rely on client-side JS for scrolling to anchors.
+app.get('/about', (req, res) => res.redirect('/#about'));
 app.get('/courses', (req, res) => res.redirect('/#courses'));
 app.get('/gallery', (req, res) => res.redirect('/#gallery'));
 app.get('/contact', (req, res) => res.redirect('/#contact'));
 
 // ===== POST: Submit Review =====
 app.post('/submit-review', (req, res) => {
-  const { name, rating, comment } = req.body;
-  if (name && rating && comment) {
-    const newReview = { name, rating: Number(rating), comment };
-    saveReview(newReview);
-  }
-  res.redirect('/reviews');
+    const { name, rating, comment } = req.body;
+    if (name && rating && comment) {
+        const newReview = {
+            name: name.trim(), // Trim whitespace
+            rating: Number(rating),
+            comment: comment.trim(), // Trim whitespace
+            timestamp: new Date().toISOString() // Add a timestamp for consistent sorting
+        };
+        saveReview(newReview);
+        res.redirect('/reviews?submitted=1'); // Redirect with a query param for success feedback
+    } else {
+        res.redirect('/reviews?error=1&message=Please fill all fields'); // Redirect with an error
+    }
 });
 
 // ===== POST: Contact Form Email Sender =====
 app.post('/contact', async (req, res) => {
-  const { name, email, message } = req.body;
+    const { name, email, message } = req.body;
 
-  if (!name || !email || !message) {
-    return res.status(400).send("Please fill all fields.");
-  }
+    if (!name || !email || !message) {
+        // Redirect back to the contact section with an error message
+        return res.redirect('/?sent=0#contact');
+    }
 
-  try {
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: 'Omsairamvehicleinsurance@gmail.com',
-        pass: 'vwmi tgmd rtji uamm' // 🔐 App password (safe in dev, use env in prod)
-      }
-    });
+    try {
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'Omsairamvehicleinsurance@gmail.com',
+                pass: 'vwmitgmdrtjiuamm' // 🔐 Important: Use environment variables for production!
+            }
+        });
 
-    const mailOptions = {
-      from: `"${name}" <${email}>`,
-      to: 'Omsairamvehicleinsurance@gmail.com',
-      subject: '📩 New Contact Message - ABC Driving School',
-      text: `You received a new message from your site:\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
-    };
+        const mailOptions = {
+            from: `"${name.trim()}" <${email.trim()}>`,
+            to: 'Omsairamvehicleinsurance@gmail.com',
+            subject: '📩 New Contact Message - Om Sai Ram Driving School',
+            text: `You received a new message from your site:\n\nName: ${name.trim()}\nEmail: ${email.trim()}\n\nMessage:\n${message.trim()}`
+        };
 
-    await transporter.sendMail(mailOptions);
-    console.log("✅ Contact message sent.");
-    res.redirect('/?sent=1#contact');
+        await transporter.sendMail(mailOptions);
+        console.log("✅ Contact message sent successfully.");
+        // Redirect to home page with 'sent=1' query parameter and anchor to contact section
+        res.redirect('/?sent=1#contact');
 
-  } catch (err) {
-    console.error("❌ Failed to send contact message:", err);
-    res.status(500).send("Something went wrong. Try again later.");
-  }
+    } catch (err) {
+        console.error("❌ Failed to send contact message:", err);
+        // Redirect back to the contact section with a failure indicator
+        res.redirect('/?sent=0&error=email_failed#contact');
+    }
 });
 
 // ===== Start Server =====
-app.listen(port, () => console.log(`🚗 Server running at http://localhost:${port}`));
+app.listen(port, () => {
+    console.log(`🚗 Server running at http://localhost:${port}`);
+});

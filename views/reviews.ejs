@@ -58,21 +58,7 @@
       <textarea name="comment" rows="4" placeholder="Your Comment" required class="w-full p-3 rounded bg-gray-900 text-white border border-gray-700"></textarea>
       <button type="submit" class="neon-btn w-full">Submit Review</button>
     </form>
-
-    <div class="max-w-4xl mx-auto mt-10 space-y-6">
-      <% if (reviews.length === 0) { %>
-        <p class="text-center text-gray-400">No reviews yet. Be the first to comment!</p>
-      <% } else { %>
-        <% reviews.slice().reverse().forEach(r => { %>
-          <div class="glass p-4">
-            <p class="text-pink-300 font-semibold"><%= r.name %></p>
-            <p class="italic text-sm mb-1">"<%= r.comment %>"</p>
-            <p class="text-yellow-400">Rating: <%= '⭐'.repeat(r.rating) %></p>
-          </div>
-        <% }) %>
-      <% } %>
-    </div>
-  </section>
+</section>
   <!-- Display Reviews -->
 <div class="max-w-4xl mx-auto mt-10 space-y-6">
   <% if (reviews.length === 0) { %>
