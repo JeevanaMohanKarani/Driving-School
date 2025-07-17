@@ -2,22 +2,28 @@ const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
-const fs = require('fs');
-const path = require('path');
+// const fs = require('fs'); // REMOVE: No longer needed for local file system operations
+// const path = require('path'); // REMOVE: No longer needed for local file system operations
+
+// --- Firebase Admin SDK Imports and Initialization ---
+const admin = require('firebase-admin');
+
+// Ensure you set these environment variables on Render!
+// The private key needs special handling for newlines when read from env var.
+admin.initializeApp({
+    credential: admin.credential.cert({
+        projectId: process.env.FIREBASE_PROJECT_ID,
+        privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'), // Crucial for multi-line private key
+        clientEmail: process.env.FIREBASE_CLIENT_EMAIL
+    })
+});
+
+const db = admin.firestore(); // Get a reference to the Firestore database
+const reviewsCollection = db.collection('reviews'); // Reference to your 'reviews' collection
+// --- End Firebase Setup ---
 
 const app = express();
 const port = process.env.PORT || 3000;
-
-// ===== File Path for Reviews =====
-const reviewsPath = path.join(__dirname, 'data', 'reviews.json');
-
-// Ensure 'data' directory exists and reviews.json file is initialized
-if (!fs.existsSync(path.join(__dirname, 'data'))) {
-    fs.mkdirSync(path.join(__dirname, 'data'));
-}
-if (!fs.existsSync(reviewsPath)) {
-    fs.writeFileSync(reviewsPath, '[]', 'utf-8'); // Initialize with an empty array
-}
 
 // ===== Middleware =====
 // Serve static files from the 'public' directory
@@ -36,90 +42,89 @@ app.use((req, res, next) => {
 
 // ===== View Engine Setup =====
 app.set('view engine', 'ejs'); // Set EJS as the template engine
-app.set('views', path.join(__dirname, 'views')); // Specify the views directory
+app.set('views', 'views'); // Views directory is relative to app.js, 'views' is fine
 app.set('layout', 'layout'); // Set 'layout.ejs' as the default layout for all views
 
-// ===== Helper: Load Reviews from File =====
-function loadReviews() {
+// ===== Helper functions for reviews are REMOVED as Firebase handles this =====
+// function loadReviews() { ... }
+// function saveReview(newReview) { ... }
+
+
+// ===== GET: Home Page (Updated to fetch latest reviews from Firestore) =====
+app.get('/', async (req, res) => {
     try {
-        const data = fs.readFileSync(reviewsPath, 'utf-8');
-        return JSON.parse(data);
+        // Fetch the 2 latest reviews, ordered by timestamp descending
+        const snapshot = await reviewsCollection.orderBy('timestamp', 'desc').limit(2).get();
+        const latestReviews = [];
+        snapshot.forEach(doc => {
+            const data = doc.data();
+            // Convert Firestore Timestamp to a readable format if needed for display
+            // If timestamp might be null (e.g., old reviews without it), handle that
+            data.timestamp = data.timestamp ? data.timestamp.toDate().toISOString() : new Date().toISOString(); // Default to current if missing
+            latestReviews.push(data);
+        });
+        res.render('index', { latestReviews: latestReviews });
     } catch (error) {
-        console.error("Error loading reviews from file:", error.message);
-        return []; // Return an empty array if file is unreadable or empty/corrupt
+        console.error("❌ Error fetching latest reviews from Firestore:", error);
+        res.render('index', { latestReviews: [] }); // Render with empty array on error
     }
-}
-
-// ===== Helper: Save a Review to File =====
-function saveReview(newReview) {
-    const allReviews = loadReviews();
-    allReviews.push(newReview);
-    try {
-        fs.writeFileSync(reviewsPath, JSON.stringify(allReviews, null, 2), 'utf-8');
-    } catch (error) {
-        console.error("Error saving review to file:", error.message);
-    }
-}
-
-// ===== GET: Home Page (Updated to pass latest reviews) =====
-app.get('/', (req, res) => {
-    const allReviews = loadReviews();
-    // Sort reviews by timestamp (newest first) and take the latest 2
-    const latestReviews = allReviews.slice() // Create a shallow copy to avoid modifying original array
-                                  .sort((a, b) => {
-                                      if (a.timestamp && b.timestamp) {
-                                          return new Date(b.timestamp) - new Date(a.timestamp);
-                                      }
-                                      return 0; // Maintain order if no timestamp or invalid
-                                  })
-                                  .slice(0, 2); // Get only the top 2 latest reviews
-
-    res.render('index', { latestReviews: latestReviews });
 });
 
-// ===== GET: Separate Reviews Page (Displays all reviews) =====
-app.get('/reviews', (req, res) => {
-    const allReviews = loadReviews();
-    // Sort all reviews by timestamp to display newest first on the dedicated reviews page
-    const sortedReviews = allReviews.slice().sort((a, b) => {
-        if (a.timestamp && b.timestamp) {
-            return new Date(b.timestamp) - new Date(a.timestamp);
-        }
-        return 0;
-    });
-    res.render('reviews', { reviews: sortedReviews });
+// ===== GET: Separate Reviews Page (Displays all reviews from Firestore) =====
+app.get('/reviews', async (req, res) => {
+    try {
+        // Fetch all reviews, ordered by timestamp descending
+        const snapshot = await reviewsCollection.orderBy('timestamp', 'desc').get();
+        const allReviews = [];
+        snapshot.forEach(doc => {
+            const data = doc.data();
+            // Convert Firestore Timestamp to a readable format if needed for display
+            data.timestamp = data.timestamp ? data.timestamp.toDate().toISOString() : new Date().toISOString(); // Default to current if missing
+            allReviews.push(data);
+        });
+        res.render('reviews', { reviews: allReviews });
+    } catch (error) {
+        console.error("❌ Error fetching all reviews from Firestore:", error);
+        res.render('reviews', { reviews: [] }); // Render with empty array on error
+    }
 });
 
-// ===== Anchor Redirects (for navigation within the single page layout) =====
-// These redirect to the root path and rely on client-side JS for scrolling to anchors.
-app.get('/about', (req, res) => res.redirect('/#about')); // Note: Your HTML doesn't have an #about section
+// ===== Anchor Redirects (remain unchanged) =====
+app.get('/about', (req, res) => res.redirect('/#about'));
 app.get('/courses', (req, res) => res.redirect('/#courses'));
 app.get('/gallery', (req, res) => res.redirect('/#gallery'));
 app.get('/contact', (req, res) => res.redirect('/#contact'));
 
-// ===== POST: Submit Review =====
-app.post('/submit-review', (req, res) => {
+// ===== POST: Submit Review (Updated to save to Firestore) =====
+app.post('/submit-review', async (req, res) => { // Made async
     const { name, rating, comment } = req.body;
+
     if (name && rating && comment) {
-        const newReview = {
-            name: name.trim(), // Trim whitespace
-            rating: Number(rating),
-            comment: comment.trim(), // Trim whitespace
-            timestamp: new Date().toISOString() // Add a timestamp for consistent sorting
-        };
-        saveReview(newReview);
-        res.redirect('/reviews?submitted=1'); // Redirect with a query param for success feedback
+        try {
+            const newReview = {
+                name: name.trim(),
+                rating: Number(rating),
+                comment: comment.trim(),
+                timestamp: admin.firestore.FieldValue.serverTimestamp() // Firestore's server-generated timestamp
+            };
+            
+            await reviewsCollection.add(newReview); // Add document to the 'reviews' collection
+            console.log("✅ Review added to Firestore successfully.");
+            res.redirect('/reviews?submitted=1'); // Redirect with success query param
+        } catch (error) {
+            console.error("❌ Error adding review to Firestore:", error);
+            res.redirect('/reviews?error=1&message=Failed to submit review'); // Redirect with error
+        }
     } else {
-        res.redirect('/reviews?error=1&message=Please fill all fields'); // Redirect with an error
+        res.redirect('/reviews?error=1&message=Please fill all fields');
     }
 });
 
-// ===== POST: Contact Form Email Sender =====
+// ===== POST: Contact Form Email Sender (remains unchanged) =====
 app.post('/contact', async (req, res) => {
     const { name, email, message } = req.body;
 
     if (!name || !email || !message) {
-        // Redirect back to the contact section with an error message
         return res.redirect('/?sent=0#contact');
     }
 
@@ -141,12 +146,10 @@ app.post('/contact', async (req, res) => {
 
         await transporter.sendMail(mailOptions);
         console.log("✅ Contact message sent successfully.");
-        // Redirect to home page with 'sent=1' query parameter and anchor to contact section
         res.redirect('/?sent=1#contact');
 
     } catch (err) {
         console.error("❌ Failed to send contact message:", err);
-        // Redirect back to the contact section with a failure indicator
         res.redirect('/?sent=0&error=email_failed#contact');
     }
 });
